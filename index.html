@@ -329,6 +329,9 @@ fieldset.field > legend + * { clear: both; }
 .card { align-content: start; }
 .card > div.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0; }
 .card .tags .tag { width: auto; }
+[hidden] { display: none !important; }
+.chip:hover { border-color: var(--fg); }
+.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 </style>
 
 <button class="skip" id="skip" type="button">Skip to content</button>
