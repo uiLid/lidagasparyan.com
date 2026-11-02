@@ -5,6 +5,7 @@ s=open(f"{B}/site2/src.html",encoding="utf-8").read()
 def sub(m):
     n=m.group(1); im=Image.open(f"{B}/shots/{n}.png").convert("RGB")
     if im.width>1700: im=im.resize((1700,int(im.height*1700/im.width)),Image.LANCZOS)
+    if im.height>3000 and im.width>1000: im=im.resize((1000,int(im.height*1000/im.width)),Image.LANCZOS)
     q=74 if n.startswith("cov-") else 84
     if n.startswith("cov-") and im.width>1600: im=im.resize((1600,int(im.height*1600/im.width)),Image.LANCZOS)
     buf=io.BytesIO(); im.save(buf,"WEBP",quality=q,method=6)
