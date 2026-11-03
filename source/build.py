@@ -6,7 +6,9 @@ def sub(m):
     n=m.group(1); im=Image.open(f"{B}/shots/{n}.png").convert("RGB")
     if im.width>1700: im=im.resize((1700,int(im.height*1700/im.width)),Image.LANCZOS)
     if im.height>3000 and im.width>1000: im=im.resize((1000,int(im.height*1000/im.width)),Image.LANCZOS)
-    q=74 if n.startswith("cov-") else 84
+    big=re.match(r"(sky-[nd]-|abc-home|abc-cons|rg-land|fm-land|abc-mobile|abc-tablet|rg-mobile|cg-over|vg-|wp-web|fm-phones|rg-ig|sky-posts)",n)
+    if big and im.width>1400: im=im.resize((1400,int(im.height*1400/im.width)),Image.LANCZOS)
+    q=70 if big else 74 if n.startswith("cov-") else 84
     if n.startswith("cov-") and im.width>1600: im=im.resize((1600,int(im.height*1600/im.width)),Image.LANCZOS)
     buf=io.BytesIO(); im.save(buf,"WEBP",quality=q,method=6)
     return f'data-src-key="{n}" src="data:image/webp;base64,'+base64.b64encode(buf.getvalue()).decode()+'"'
