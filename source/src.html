@@ -377,6 +377,9 @@ fieldset.field > legend + * { clear: both; }
 
 .sky-switch{display:flex;gap:8px;margin:0 0 -28px}
 .sky-group[hidden]{display:none}
+
+.shots-inline { margin-top: clamp(24px, 4vw, 40px); margin-bottom: clamp(40px, 6vw, 72px); }
+.glance { counter-reset: g; } .gl { counter-increment: g; } .gl .k::before { content: "0" counter(g) "  "; opacity: .6; }
 </style>
 
 <button class="skip" id="skip" type="button">Skip to content</button>
@@ -2049,13 +2052,26 @@ fieldset.field > legend + * { clear: both; }
       var fg = mk('figure', 'case-cover'), im = mk('img'); im.src = card.getAttribute('src'); im.alt = ''; im.width = 1800; im.height = 1100; fg.appendChild(im);
       hero.insertAdjacentElement('afterend', fg);
     }
+    // 1b. interleave screenshots with the story sections (problem, process, result)
+    (function () {
+      var secs = Array.prototype.slice.call(page.querySelectorAll(':scope > .sec')), sh0 = page.querySelector(':scope > .shots');
+      if (!sh0 || secs.length < 2 || page.querySelector('.sky-switch')) return;
+      var figs = Array.prototype.slice.call(sh0.children); if (figs.length < 2) return;
+      var per = Math.ceil(figs.length / secs.length), i = 0;
+      secs.forEach(function (sec, n) {
+        var part = figs.slice(i, n === secs.length - 1 ? figs.length : i + per); i += per; if (!part.length) return;
+        var box = mk('div', 'shots shots-inline'); part.forEach(function (f) { box.appendChild(f); });
+        sec.insertAdjacentElement('afterend', box);
+      });
+      sh0.remove();
+    })();
     // 2. jump bar
     var items = [];
     page.querySelectorAll('.sec').forEach(function (s, n) { var h = s.querySelector('h2'); if (h) items.push({ el: s, label: h.textContent }); });
     var shots = page.querySelector('.shots');
     if (shots) {
       var figs = shots.querySelectorAll('figure').length;
-      if (figs > 1) {
+      if (figs > 1 && !shots.classList.contains('shots-inline')) {
         var head = mk('div', 'shots-head'); head.appendChild(mk('span', 'k', T('Screens and details')));
         var h2 = mk('h2', '', T('The work')); head.appendChild(h2);
         head.appendChild(mk('p', '', T('Click any image to view it full size.')));
