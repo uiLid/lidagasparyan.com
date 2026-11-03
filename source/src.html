@@ -76,6 +76,8 @@ p { margin: 0; }
 .icon-btn:hover { border-color: var(--fg); }
 .shot { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: #fff; }
 .shot img { width: 100%; height: auto; }
+.shots .shot { width: fit-content; max-width: min(100%, 880px); margin-inline: auto; }
+.shots .shot img { width: auto; max-width: 100%; height: auto; }
 .note { font-size: 0.88rem; color: var(--muted); }
 .shot.scroll { max-height: 640px; overflow-y: auto; }
 .shot.scroll.narrow img { width: min(100%, 640px); margin-inline: auto; }
