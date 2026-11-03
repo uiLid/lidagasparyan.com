@@ -383,10 +383,23 @@ fieldset.field > legend + * { clear: both; }
 .shots-inline { margin-top: clamp(24px, 4vw, 40px); margin-bottom: clamp(40px, 6vw, 72px); }
 .glance { counter-reset: g; } .gl { counter-increment: g; } .gl .k::before { content: "0" counter(g) "  "; opacity: .6; }
 
-/* case image sizing: natural size, centred, never stretched */
-.shots .shot, .shots .shot.scroll, .shots .shot.narrow { width: fit-content; max-width: min(100%, 880px); margin-inline: auto; max-height: none; overflow: hidden; }
-.shots .shot.narrow, .shots .shot.scroll.narrow { max-width: min(100%, 560px); }
-.shots .shot img, .shots .shot.narrow img, .shots .shot.scroll.narrow img { width: auto; max-width: 100%; height: auto; margin: 0; }
+/* ---- case page layout: one 2-column grid (label | content), figures in containers ---- */
+:root { --lab: 240px; --gut: 48px; }
+.shots .shot, .shots .shot.scroll, .shots .shot.narrow { width: 100%; max-width: none; max-height: none; overflow: hidden; margin: 0; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: clamp(14px, 3vw, 40px); }
+.shots .shot img, .shots .shot.narrow img, .shots .shot.scroll.narrow img { width: auto; max-width: min(100%, 880px); height: auto; margin: 0; border-radius: 8px; box-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 10px 30px rgb(0 0 0 / .10); }
+.shots .shot.narrow img, .shots .shot.scroll.narrow img { max-width: min(100%, 520px); }
+.shots .fig { gap: 16px; }
+.shots .fig figcaption { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.shots .fig figcaption h3 { font-size: 1rem; }
+@media (min-width: 860px) {
+  .page .sec { max-width: none; grid-template-columns: var(--lab) minmax(0, 1fr); column-gap: var(--gut); row-gap: 14px; align-items: start; }
+  .page .sec > h2 { grid-column: 1; grid-row: 1 / span 40; position: sticky; top: calc(var(--hh, 64px) + 72px); margin: 0; }
+  .page .sec > :not(h2) { grid-column: 2; max-width: 68ch; }
+  .shots .fig figcaption { grid-template-columns: var(--lab) minmax(0, 1fr); column-gap: var(--gut); }
+  .shots .fig figcaption p { max-width: 68ch; }
+}
+@media (max-width: 640px) { .jump { top: 0; } }
+@media (max-width: 859px) { .page .sec > h2 { position: static; } }
 </style>
 
 <button class="skip" id="skip" type="button">Skip to content</button>
