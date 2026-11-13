@@ -101,9 +101,9 @@ newf="\n".join([fig("luufen-hero",1440,1024,"Luufen home page with a vertical lo
  fig("luufen-page",1440,4562,"Luufen product page for the Original can with callouts, nutrition facts and a footer.",("Product page","Страница продукта"),("A can on an ice field, circled in red, with callouts for what is inside.","Банка на льдине, обведённая красным, с подписями о составе."),"shot narrow")])
 a=src.index('data-route="case-luufen"'); b=src.index('<div class="shots">',a)+len('<div class="shots">')
 src=src[:b]+"\n"+newf+src[b:]
-src=src.replace("Twenty-five case studies,","Thirty case studies,").replace("Case studies (25)","Case studies (30)")
+src=src.replace("Twenty-five case studies,","Thirty-one case studies,").replace("Case studies (25)","Case studies (30)")
 src=re.sub(r'(<span class="n">)25(</span><span class="t">case studies)',r'\g<1>30\2',src)
 open(f"{B}/src.html","w",encoding="utf-8").write(src)
-RUN.update({"Thirty case studies, each told through the real work. Filter by discipline.":"Тридцать кейсов, каждый показан через реальную работу. Фильтруйте по направлению.","Case studies (30)":"Кейсы (30)","Detail":"Деталь","Idea":"Идея","Colour":"Цвет","System":"Система","Startup":"Стартап","Travel":"Путешествия","Logo":"Логотип","Zeppelin":"Zeppelin","MF5":"MF5"})
+RUN.update({"Thirty-one case studies, each told through the real work. Filter by discipline.":"Тридцать один кейс, каждый показан через реальную работу. Фильтруйте по направлению.","Case studies (30)":"Кейсы (30)","Detail":"Деталь","Idea":"Идея","Colour":"Цвет","System":"Система","Startup":"Стартап","Travel":"Путешествия","Logo":"Логотип","Zeppelin":"Zeppelin","MF5":"MF5"})
 open(f"{B}/ru_new4.py","w",encoding="utf-8").write("RU.update("+json.dumps(RUN,ensure_ascii=False)+")\n")
 print("ok",len(RUN))
