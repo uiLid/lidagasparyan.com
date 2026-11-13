@@ -21,8 +21,9 @@
   --fg: #141414;
   --muted: #545854;
   --line: #E1E4DF;
-  --accent: #6AB658;
-  --accent-fg: #141414;
+  --accent: #35822A;
+  --accent-fg: #FFFFFF;
+  --brand: #6AB658;
   --accent-soft: #E6F3E3;
   --accent-ink: #2E7D24;
   --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
@@ -34,11 +35,11 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #141414; --surface: #1C1D1B; --fg: #F3F4F2; --muted: #A3A8A0;
-    --line: #2E302C; --accent: #6AB658; --accent-fg: #141414; --accent-soft: #1F2D1C; --accent-ink: #8BCB7C; color-scheme: dark;
+    --line: #2E302C; --accent: #35822A; --accent-fg: #FFFFFF; --brand: #6AB658; --accent-soft: #1F2D1C; --accent-ink: #8BCB7C; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #141414; --surface: #1C1D1B; --fg: #F3F4F2; --muted: #A3A8A0; --line: #2E302C; --accent: #6AB658; --accent-fg: #141414; --accent-soft: #1F2D1C; --accent-ink: #8BCB7C; color-scheme: dark;
+  --bg: #141414; --surface: #1C1D1B; --fg: #F3F4F2; --muted: #A3A8A0; --line: #2E302C; --accent: #35822A; --accent-fg: #FFFFFF; --brand: #6AB658; --accent-soft: #1F2D1C; --accent-ink: #8BCB7C; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -290,7 +291,7 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .js-reveal .rv.in { opacity: 1; transform: none; }
 .card, .gl, .stat { transition: transform .25s ease, box-shadow .25s ease; }
 .gl:hover, .stat:hover { transform: translateY(-3px); }
-#progress { position: fixed; left: 0; top: 0; height: 3px; width: 0; background: var(--accent); z-index: 40; transition: width .08s linear; pointer-events: none; }
+#progress { position: fixed; left: 0; top: 0; height: 3px; width: 0; background: var(--brand); z-index: 40; transition: width .08s linear; pointer-events: none; }
 @media (min-width: 760px) { .glance { grid-template-columns: repeat(3, minmax(0, 1fr)); } .proof { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (prefers-reduced-motion: reduce) {
   .hero::before, .hero .label, .hero h1, .hero .lead, .hero .actions { animation: none; }
@@ -432,7 +433,7 @@ fieldset.field > legend + * { clear: both; }
 .dk-ring { position: relative; width: 34px; height: 34px; flex: none; }
 .dk-ring svg { width: 34px; height: 34px; transform: rotate(-90deg); }
 .dk-ring circle { fill: none; stroke: color-mix(in srgb, var(--bg) 22%, transparent); stroke-width: 2.5; }
-.dk-ring .dk-pr { stroke: var(--accent); stroke-dasharray: 100.5; stroke-dashoffset: 100.5; stroke-linecap: round; transition: stroke-dashoffset .15s linear; }
+.dk-ring .dk-pr { stroke: var(--brand); stroke-dasharray: 100.5; stroke-dashoffset: 100.5; stroke-linecap: round; transition: stroke-dashoffset .15s linear; }
 .dk-n { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 600 11px var(--mono, monospace); }
 .dk-l { font-weight: 600; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; min-width: 120px; text-align: left; }
 .dk-ch { flex: none; opacity: .7; transition: transform .25s; }
@@ -445,12 +446,12 @@ fieldset.field > legend + * { clear: both; }
 .dk-i { font: 500 11px var(--mono, monospace); opacity: .5; width: 20px; }
 .dk-menu button[aria-current="true"] { background: color-mix(in srgb, var(--accent) 28%, transparent); }
 .dk-menu button[aria-current="true"] .dk-i { opacity: 1; color: var(--accent-ink); }
-.dk-menu button[aria-current="true"]::after { content: ""; margin-left: auto; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.dk-menu button[aria-current="true"]::after { content: ""; margin-left: auto; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); }
 @media (max-width: 520px) { .dk-l { min-width: 0; max-width: 46vw; } .dk-menu { min-width: 0; } }
 @media (prefers-reduced-motion: reduce) { .dock, .dk-menu, .dk-ch { transition: none; animation: none; } }
 
 /* Be You brand: green asterisk after the name */
-.brand::after { content: "*"; color: var(--accent); font-weight: 800; margin-left: 1px; }
+.brand::after { content: "*"; color: var(--brand); font-weight: 800; margin-left: 1px; }
 </style>
 
 <button class="skip" id="skip" type="button">Skip to content</button>
