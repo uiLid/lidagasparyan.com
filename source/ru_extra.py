@@ -477,3 +477,6 @@ RU.update({
 "A hummingbird mark in leaf line art, dark-green leaf panels at the edges and a calm centre for names and prices.": "Знак колибри из линий листьев, тёмно-зелёные панели с листьями по краям и спокойный центр для названий и цен.",
 "Russian, for a restaurant in Penza.": "Русский, для ресторана в Пензе."
 })
+
+# book via Instagram
+RU.update({"Last step: send this summary to me on Instagram. Tap the button, the summary is copied, then paste it into the chat and I will confirm a time.": "Последний шаг: отправьте это мне в Instagram. Нажмите кнопку, текст скопируется, вставьте его в чат, и я подтвержу время.", "Copy and send on Instagram": "Скопировать и отправить в Instagram", "Prefer to chat?": "Удобнее в переписке?", "Message Be You on Instagram": "Напишите Be You в Instagram", "and write “call”.": "и отправьте «звонок»."})
