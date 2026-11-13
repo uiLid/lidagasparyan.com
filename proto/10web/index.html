@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>10Web dashboard · prototype · Lida Gasparyan</title>
+<style>
+@font-face{font-family:'Open Sans';src:url(../assets/opensans.woff2) format('woff2');font-weight:300 800;font-display:swap}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font-family:'Open Sans',system-ui,sans-serif;color:#111;background:#fff;font-size:13px;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.app{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr;height:100vh;gap:20px 20px;padding:10px 10px 10px 10px}
+.logo{width:42px;height:42px;border:1px solid #E6E6E6;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#fff}
+.top{display:flex;align-items:center;gap:12px;height:42px;border:1px solid #E6E6E6;border-radius:8px;padding:0 6px 0 12px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.prod{display:flex;align-items:center;gap:8px;font-weight:600;padding-right:12px;border-right:1px solid #E6E6E6;height:100%}
+.search{flex:1;display:flex;align-items:center;gap:8px;color:#9A9A9A}
+.search input{border:0;outline:0;font:inherit;width:100%}
+.bbtn{height:26px;padding:0 8px;border-radius:3px;font-weight:600;font-size:12.5px}.bbtn.blk{background:#000;color:#fff}.bbtn.out{border:1px solid #000}
+.ico{display:flex;gap:14px;align-items:center;padding:0 10px;border-left:1px solid #E6E6E6;height:24px;color:#C4C4C4}
+.ava{width:36px;height:36px;border-radius:6px;background:#F2F2F2;display:flex;align-items:center;justify-content:center;color:#B5B5B5}.ava.on{background:#000;color:#fff}
+.side{border:1px solid #E6E6E6;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.03);display:flex;flex-direction:column;transition:width .25s ease;overflow:hidden}
+.side.open{width:220px;padding:10px 10px 10px 14px}.side.closed{width:42px;padding:10px 4px;align-items:center}
+.row1{display:flex;justify-content:space-between;align-items:center;height:24px}
+.hide{display:flex;align-items:center;gap:6px;font-size:12.5px}
+.env{display:flex;align-items:center;gap:6px;background:#E9F7EC;border-radius:4px;padding:3px 8px;font-size:11px;font-weight:600}.env i{width:7px;height:7px;border-radius:50%;background:#21B04A}.env.stg{background:#FFF3DC}.env.stg i{background:#E3A008}
+.prev{margin-top:12px;height:100px;border-radius:6px;overflow:hidden;position:relative;display:grid;grid-template-columns:24% 25% 25% 24% 12%}
+.prev span:nth-child(1){background:#F0A091}.prev span:nth-child(2){background:#8D97CF}.prev span:nth-child(3){background:#F5F0FB}.prev span:nth-child(4){background:#F9E58A}.prev span:nth-child(5){background:#9C5C7F}
+.score{position:absolute;left:8px;top:8px;width:34px;height:34px;border-radius:50%;background:#fff;border:3px solid #21B04A;color:#21B04A;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:12px}
+.wpbox{position:absolute;right:8px;top:8px;background:#fff;border-radius:4px;display:flex;box-shadow:0 1px 3px rgba(0,0,0,.15)}.wpbox b{width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif}
+.url{align-self:center;margin:12px 0 8px;background:#F2F2F2;border-radius:4px;padding:5px 8px;font-size:11px;font-weight:600}
+.nav{display:flex;flex-direction:column;gap:2px;margin-top:6px}
+.nav button{display:flex;align-items:center;gap:10px;height:30px;font-size:12.5px;font-weight:500;border-radius:5px;text-align:left;padding:0 4px;width:100%}
+.nav button:hover{background:#F5F5F5}.nav button.cur{background:#F2F2F2;font-weight:600}
+.nav button .chev{margin-left:auto;color:#333}
+.closed .nav button{justify-content:center;width:32px;padding:0}
+.sub button{padding-left:34px;height:28px;font-weight:400}.sub button.act{color:#3339F1}
+.store{margin-top:auto;background:#F2F2FC;border-radius:6px;padding:10px;font-weight:600}.store small{display:block;color:#3339F1;font-weight:400;margin-top:4px}
+.qbox{display:flex;flex-direction:column;gap:2px;border:1px solid #E6E6E6;border-radius:6px;margin:10px 0}.qbox b{width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif}
+.main{overflow:auto;position:relative;border-radius:8px}
+.h-wave{font-weight:700;font-size:13px;margin:8px 0 6px}.h1{font-size:20px;font-weight:700;margin:0 0 6px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,360px));gap:20px;margin-top:40px}
+.oc{border:1px solid #E6E6E6;border-radius:6px;padding:56px 20px 20px;height:325px;display:flex;flex-direction:column;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.oc:hover,.oc.sel{border-color:#000;box-shadow:0 4px 10px -4px rgba(0,0,0,.25)}
+.oc .k{font-size:10.5px;letter-spacing:.2em;font-weight:600}.oc h3{font-size:20px;line-height:1.5;margin:22px 0 4px}.oc p{margin:0;font-size:12px}
+.oc .go{margin-top:auto;align-self:flex-end;width:180px;height:40px;border-radius:4px;background:#000;color:#fff;font-weight:600}.oc.sel .go{background:#3339F1}
+.tabs{display:inline-flex;border:1px solid #E6E6E6;border-radius:6px;padding:3px}.tabs button{padding:8px 18px;border-radius:4px;color:#555}.tabs button.on{background:#000;color:#fff}
+.panel{border:1px solid #E6E6E6;border-radius:6px;padding:20px;margin-top:22px}
+.sec-grid{display:grid;grid-template-columns:440px 180px 1fr;gap:20px 20px;align-items:center}
+.in{height:40px;background:#F2F2F2;border:1px solid #E6E6E6;border-radius:4px;padding:0 14px;display:flex;align-items:center;color:#AAA}
+.obtn{height:40px;border:1px solid #000;border-radius:4px;font-size:12.5px}.obtn.done{background:#000;color:#fff}
+.grant{grid-row:1/4;grid-column:3;background:#E8E8FB;border-radius:4px;padding:20px;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end;position:relative;margin-left:30px}
+.grant h3{font-size:16px;margin:0 0 6px}.grant p{margin:0;font-size:14px;line-height:1.5}
+.sw{width:36px;height:20px;border-radius:999px;background:#C9C9C9;position:relative;transition:background .2s}.sw::after{content:"";position:absolute;left:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:left .2s}.sw.on{background:#111}.sw.on::after{left:19px}
+.gi{position:absolute;left:20px;top:20px;width:40px;height:40px;border-radius:6px;background:#000;display:flex;align-items:center;justify-content:center}
+.pay-hero{border:1px solid #000;border-radius:6px;padding:20px;display:flex;align-items:center;gap:20px}.badge{display:inline-block;background:#E8E8FB;border-radius:999px;padding:3px 8px;font-size:12px}
+.pm{border:1px solid #E6E6E6;border-radius:6px;padding:12px 16px;display:flex;align-items:center;gap:20px;margin-top:16px}.pm .dots{color:#CCC;letter-spacing:-2px}
+.save{height:40px;width:180px;border-radius:4px;background:#8C8C8C;color:#EDEDED;font-weight:600}.save.ready{background:#000;color:#fff}
+.acct{position:absolute;right:10px;top:62px;width:300px;background:#000;color:#fff;border-radius:10px;padding:20px 10px 20px;z-index:10;box-shadow:0 20px 40px -12px rgba(0,0,0,.4)}
+.acct .r{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-radius:6px;font-weight:600;width:100%}.acct .r:hover{background:#151515}
+.ws{background:#1F1F1F;border-radius:8px;padding:12px 14px;margin:10px 0}
+.wsi{display:flex;align-items:center;gap:12px;padding:10px 0;width:100%;text-align:left}.wsi .l{width:30px;height:30px;border-radius:50%;background:#444;display:flex;align-items:center;justify-content:center;font-weight:700}.wsi.cur .l{background:#fff;color:#000}.wsi small{display:block;color:#BBB;font-weight:400}
+.hint{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);background:#111;color:#fff;border-radius:999px;padding:8px 16px;font-size:12px;opacity:.92;pointer-events:none;z-index:20}
+.toast{position:fixed;left:50%;top:70px;transform:translateX(-50%);background:#111;color:#fff;border-radius:6px;padding:10px 16px;font-weight:600;z-index:30}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function(){
+var S={open:true,ctx:'main',page:'onboard',env:'live',acct:false,tab:'sec',sel:0,ws:0,grant:false,tfa:false,pm:[1,1,1,1],dirty:false,sub:'Overview',toast:null,hint:true};
+var IC={
+ grid:'<path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/>',layers:'<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/>',menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',bag:'<path d="M5 8h14l-1 13H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',cloud:'<path d="M7 18h10a4 4 0 0 0 0-8 6 6 0 0 0-11.5 1.5A3.5 3.5 0 0 0 7 18Z"/>',plug:'<path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0V7ZM12 17v5"/>',brush:'<path d="M4 20h7l9-9-7-7-9 9v7Z"/>',backup:'<path d="M7 18h10a4 4 0 0 0 0-8 6 6 0 0 0-11.5 1.5A3.5 3.5 0 0 0 7 18Z"/><path d="M12 15v-5M9.5 12.5 12 10l2.5 2.5"/>',
+ chev:'<path d="m9 6 6 6-6 6"/>',dchev:'<path d="m13 6-6 6 6 6M19 6l-6 6 6 6"/>',dchevr:'<path d="m11 6 6 6-6 6M5 6l6 6-6 6"/>',back:'<path d="m15 6-6 6 6 6"/>',down:'<path d="m6 9 6 6 6-6"/>',up:'<path d="m6 15 6-6 6 6"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>',ext:'<path d="M8 16 16 8M10 8h6v6"/>',pen:'<path d="m4 20 1-5L16 4l4 4L9 19l-5 1Z"/>',out:'<path d="M14 4h5v16h-5M10 8l4 4-4 4M14 12H4"/>',dots:'<circle cx="6" cy="6" r="1.4"/><circle cx="12" cy="6" r="1.4"/><circle cx="18" cy="6" r="1.4"/><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/><circle cx="6" cy="18" r="1.4"/><circle cx="12" cy="18" r="1.4"/><circle cx="18" cy="18" r="1.4"/>',srch:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'};
+function i(n,s,w,f){return'<svg width="'+(s||18)+'" height="'+(s||18)+'" viewBox="0 0 24 24" fill="'+(f?'currentColor':'none')+'" stroke="currentColor" stroke-width="'+(w||1.6)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>'}
+var LOGO='<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 12 12 22 2 12Z" fill="none" stroke="#111" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 7 17 12 12 17 7 12Z" fill="#111"/><path d="M7 12h5" stroke="#fff" stroke-width="2"/></svg>';
+var NAV=[['grid','Main'],['layers','AI Builder'],['menu','Navigation'],['bag','Ecommerce',1],['bolt','Website Booster',1],['globe','Domains'],['cloud','Hosting services',1],['plug','Plugins'],['brush','Wordpress themes'],['backup','Backups']];
+var ECOM=['Overview','Orders','Products','Customers','10Web Payments','Payouts','Tax','Emails','Shipping','Settings'];
+var WS=[['U',"Ustian’s workspace",'owner'],['W',"World’s workspace",'admin'],['X',"Xoxoxo’s workspace",'contributor']];
+function side(){
+ if(!S.open){return '<aside class="side closed"><button aria-label="Show menu" data-a="open" style="height:30px">'+i('dchevr',18,2.2)+'</button><div class="qbox"><b>W</b><b style="border-top:1px solid #E6E6E6">'+i('pen',14,2)+'</b></div><button aria-label="Domains" style="height:30px;width:30px;border-radius:5px;background:#F2F2F2;display:flex;align-items:center;justify-content:center">'+i('globe',16)+'</button><nav class="nav" style="margin-top:14px">'+NAV.map(function(n){return'<button aria-label="'+n[1]+'" data-a="nav" data-v="'+n[1]+'" style="color:#666">'+i(n[0],16)+'</button>'}).join('')+'</nav></aside>';}
+ var h='<aside class="side open"><div class="row1"><button class="hide" data-a="close">'+i('dchev',14,2)+'Hide</button><button class="env'+(S.env==='stg'?' stg':'')+'" data-a="env"><i></i>'+(S.env==='stg'?'Staging env':'Live env')+i('down',12,2.4)+'</button></div>';
+ if(S.ctx==='main'){h+='<div class="prev"><span></span><span></span><span></span><span></span><span></span><div class="score">98</div><div class="wpbox"><b>W</b><b style="border-left:1px solid #EEE">'+i('pen',14,2)+'</b></div></div><div class="url">example.coxample.com '+i('ext',11,2.4)+'</div>';
+  h+='<nav class="nav">'+NAV.map(function(n){var cur=(n[1]==='Main'&&S.page==='onboard');return'<button class="'+(cur?'cur':'')+'" data-a="nav" data-v="'+n[1]+'">'+i(n[0],16)+n[1]+(n[2]?'<span class="chev">'+i('chev',14,2)+'</span>':'')+'</button>'}).join('')+'</nav>';}
+ else{h+='<nav class="nav" style="margin-top:18px"><button data-a="back" style="font-weight:600">'+i('back',14,2.2)+'Back to main menu</button><button class="cur" style="margin-top:10px">'+i('bag',16,2,0).replace('fill="none"','fill="#111"')+'Ecommerce</button><div class="sub">'+ECOM.map(function(e){return'<button class="'+(S.sub===e?'act':'')+'" data-a="sub" data-v="'+e+'">'+e+'</button>'}).join('')+'</div></nav><button class="store" data-a="toast" data-v="Store setup: 2 of 5 steps done"><span style="display:flex;justify-content:space-between">Setup your store '+i('chev',14,2)+'</span><small>Completed: 2/5</small></button>';}
+ return h+'</aside>';}
+function top(){return '<div class="logo">'+LOGO+'</div><header class="top"><button class="prod">'+i('dots',16,0,1)+'My products '+i('down',14,2.2)+'</button><label class="search">'+i('srch',14)+'<input placeholder="Search..." aria-label="Search"></label>'+(S.page==='onboard'?'':'<button class="bbtn blk" data-a="toast" data-v="Invite sent (demo)">Invite Users</button><button class="bbtn out">Go to Expert Profile</button>')+'<span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="#C4C4C4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke="#fff" stroke-width="2" fill="none"/></svg><svg width="20" height="18" viewBox="0 0 24 24" fill="#C4C4C4" aria-hidden="true"><path d="M2 5c4-1 7 0 10 2 3-2 6-3 10-2v14c-4-1-7 0-10 2-3-2-6-3-10-2Z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#C4C4C4" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9h-9Z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="#C4C4C4" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v4l-2 4h16l-2-4V9a6 6 0 0 0-6-6ZM10 20a2 2 0 0 0 4 0"/></svg></span><button class="ava'+(S.acct||S.page==='security'?' on':'')+'" data-a="acct" aria-label="Account menu">'+i('user',18,0,1)+'</button></header>';}
+function main(){
+ if(S.page==='onboard')return '<main class="main" style="padding:10px 70px"><div class="h-wave">👋 Hey there!</div><h1 class="h1">What do you want to do?</h1><p style="margin:0;font-size:14px">Choose how you want to proceed and we’ll help you get started. Simply follow the steps below.</p><div class="cards">'+
+  [['GENERATE','AI','Create a new<br>website with AI','Our AI tool will generate tailored content &amp; images'],['RECREATE','↻','Convert a non-WordPress<br>site to WordPress with AI','Insert a URL to recreate its layout with AI'],['AUTOMIGRATE','☁','Migrate WordPress<br>site to 10Web hosting','Host your WordPress website on 10Web']].map(function(c,k){return'<div class="oc'+(S.sel===k?' sel':'')+'" data-a="sel" data-v="'+k+'"><span class="k">'+c[0]+' <span style="background:#000;color:#fff;border-radius:2px;padding:0 3px;letter-spacing:0">'+c[1]+'</span></span><h3>'+c[2]+'</h3><p>'+c[3]+'</p><button class="go" data-a="toast" data-v="Next step: '+c[0].toLowerCase()+' flow">Proceed</button></div>'}).join('')+'</div><p style="margin-top:30px"><a href="#" data-a="toast" data-v="Blank WordPress install started (demo)" style="color:#111;font-weight:600">Or install a blank WordPress website</a></p></main>';
+ if(S.page==='security')return '<main class="main"><div class="tabs"><button class="'+(S.tab==='info'?'on':'')+'" data-a="tab" data-v="info">Personal info</button><button class="'+(S.tab==='sec'?'on':'')+'" data-a="tab" data-v="sec">Security</button></div>'+(S.tab==='sec'?'<section class="panel"><h2 style="font-size:16px;margin:0 0 26px">Security &amp; Login info</h2><div class="sec-grid"><div class="in">email.com</div><button class="obtn" data-a="toast" data-v="We sent a confirmation link (demo)">Change Email</button>'+
+  '<div class="grant"><div class="gi">'+i('bag',20,2).replace('stroke="currentColor"','stroke="#fff"')+'</div><button class="sw'+(S.grant?' on':'')+'" data-a="grant" aria-label="Grant temporary access" style="position:absolute;right:20px;top:20px"></button><h3>Grant 10Web temporary access for 14 days</h3><p>Provide the 10Web customer care team 14 days of temporary access to your dashboard and websites for faster support.</p>'+(S.grant?'<p style="margin-top:8px;font-size:12px;font-weight:600">Access active until '+new Date(Date.now()+14*864e5).toLocaleDateString('en-GB',{day:'numeric',month:'short'})+'</p>':'')+'</div>'+
+  '<div><b style="font-size:14px">Reset your password</b><div style="font-size:12px;margin-top:4px">A link to reset your password will be sent to your email.</div></div><button class="obtn" data-a="toast" data-v="Reset link sent (demo)">Reset Password</button>'+
+  '<div><b style="font-size:14px">Google two-factor authentication</b><div style="font-size:12px;margin-top:4px">Use unique authentication codes in addition to your password.</div></div><button class="obtn'+(S.tfa?' done':'')+'" data-a="tfa">'+(S.tfa?'Enabled ✓':'Enable')+'</button></div></section>':'<section class="panel"><h2 style="font-size:16px;margin:0 0 20px">Personal info</h2><div style="display:grid;grid-template-columns:440px 440px;gap:16px"><div class="in" style="color:#111;background:#fff">Name Surname</div><div class="in" style="color:#111;background:#fff">usermail@gmail.com</div></div></section>')+'</main>';
+ if(S.page==='payments'){var pm=[['10Web Payments','Accept online payments: Credit/debit cards'],['Direct bank transfer'],['Check payments'],['Cash on delivery']];
+  return '<main class="main"><div class="pay-hero"><div style="flex:1"><span class="badge">10Web<b>Payments</b></span><h2 style="font-size:16px;margin:10px 0 4px">Accept payments instantly with 10Web Payments</h2><div style="font-size:14px">Processing payments with a secure, fast, and seamless checkout experience for businesses of all sizes.</div></div><button class="save ready" data-a="toast" data-v="10Web Payments setup opened (demo)">Set Up</button></div>'+
+  '<section class="panel"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><h2 style="font-size:16px;margin:0 0 6px">Payment methods</h2><div style="font-size:14px">Manage, setup, and reorder all your payment systems in one place. ⓘ</div></div><button class="save'+(S.dirty?' ready':'')+'" data-a="save">Save Changes</button></div>'+
+  pm.map(function(p,k){return'<div class="pm"><button class="sw'+(S.pm[k]?' on':'')+'" data-a="pm" data-v="'+k+'" aria-label="Turn '+p[0]+' on or off" style="width:34px"></button><span class="dots">⋮⋮</span><div style="flex:1"><b style="font-size:14px">'+p[0]+'</b>'+(p[1]?'<div style="margin-top:8px">'+p[1]+'</div><div style="display:flex;gap:6px;margin-top:8px">'+['VISA','MC','AMEX','DISC'].map(function(c){return'<span style="border:1px solid #E6E6E6;border-radius:3px;font-size:8px;padding:4px 7px;font-weight:700;color:#1A2B8C">'+c+'</span>'}).join('')+'</div>':'')+'</div>'+(k===0?'<button class="obtn" style="width:180px" data-a="toast" data-v="Setup opened (demo)">Set Up</button>':'<a href="#" style="color:#111;font-weight:600;font-size:14px">Manage</a>')+'</div>'}).join('')+'</section></main>';}
+ return '<main class="main" style="display:flex;align-items:center;justify-content:center;color:#999;font-size:14px;border:1px dashed #E6E6E6">'+S.page+' · placeholder page</main>';}
+function acct(){if(!S.acct)return'';var cur=WS[S.ws];var others=WS.filter(function(_,k){return k!==S.ws});
+ return '<div class="acct" role="dialog" aria-label="Account"><div style="display:flex;gap:12px;align-items:center;padding:0 14px 14px"><span style="width:36px;height:36px;border-radius:6px;background:#333;display:flex;align-items:center;justify-content:center">'+i('user',18,0,1)+'</span><div><b>Name Surname</b><div style="font-size:12px">usermail@gmail.com</div></div></div>'+
+ '<button class="r" data-a="manage">Manage your account '+i('chev',14,2.2)+'</button><hr style="border:0;border-top:1px solid #333;margin:10px 14px"><button class="r" data-a="payments">Payments &amp; subscriptions '+i('chev',14,2.2)+'</button><button class="r" data-a="toast" data-v="Users page (demo)">Users '+i('chev',14,2.2)+'</button>'+
+ '<div class="ws"><div style="display:flex;justify-content:space-between"><div><div style="font-size:12px;color:#CCC">My workspaces</div><b>example.coxample.com</b></div><span style="width:22px;height:22px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center">'+i('up',12,2.4)+'</span></div>'+
+ '<div class="wsi cur" style="border-bottom:1px solid #333;margin-top:6px"><span class="l">'+cur[0]+'</span><span style="flex:1"><b>'+cur[1]+'</b><small>Role: '+cur[2]+'</small></span>'+i('pen',14,2)+'</div>'+
+ others.map(function(w){return'<button class="wsi" data-a="ws" data-v="'+WS.indexOf(w)+'"><span class="l">'+w[0]+'</span><span style="flex:1"><b>'+w[1]+'</b><small>Role: '+w[2]+'</small></span><span style="color:#666">'+i('chev',14,2)+'</span></button>'}).join('')+'</div><button class="r" style="color:#AAA;font-weight:400" data-a="toast" data-v="Signed out (demo)">Sign out '+i('out',14)+'</button></div>';}
+function render(){document.getElementById('app').innerHTML='<div class="app">'+top()+side()+main()+'</div>'+acct()+(S.toast?'<div class="toast" role="status">'+S.toast+'</div>':'')+(S.hint?'<div class="hint">Prototype · try the menu, Ecommerce and the avatar</div>':'');}
+var tt;function toast(m){S.toast=m;render();clearTimeout(tt);tt=setTimeout(function(){S.toast=null;render()},2200);}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b){if(S.acct&&!e.target.closest('.acct')){S.acct=false;render();}return;}e.preventDefault();var a=b.dataset.a,v=b.dataset.v;S.hint=false;
+ if(a!=='acct'&&!b.closest('.acct'))S.acct=false;
+ if(a==='close')S.open=false;else if(a==='open')S.open=true;
+ else if(a==='env')S.env=S.env==='live'?'stg':'live';
+ else if(a==='nav'){if(v==='Ecommerce'){S.ctx='ecom';S.open=true;S.page='payments';S.sub='10Web Payments';}else if(v==='Main'){S.page='onboard';}else{toast(v+' (not in this prototype)');return;}}
+ else if(a==='back'){S.ctx='main';S.page='onboard';}
+ else if(a==='sub'){S.sub=v;if(v==='10Web Payments')S.page='payments';else{toast(v+' (not in this prototype)');return;}}
+ else if(a==='acct')S.acct=!S.acct;
+ else if(a==='manage'){S.acct=false;S.page='security';S.tab='sec';}
+ else if(a==='payments'){S.acct=false;S.page='payments';S.ctx='ecom';S.sub='10Web Payments';}
+ else if(a==='ws'){S.ws=+v;S.acct=true;render();toast('Switched to '+WS[S.ws][1]);return;}
+ else if(a==='tab')S.tab=v;else if(a==='grant')S.grant=!S.grant;else if(a==='tfa')S.tfa=!S.tfa;
+ else if(a==='pm'){S.pm[+v]=S.pm[+v]?0:1;S.dirty=true;}
+ else if(a==='save'){if(S.dirty){S.dirty=false;render();toast('Changes saved');}return;}
+ else if(a==='sel'){if(e.target.closest('.go'))return;S.sel=+v;}
+ else if(a==='toast'){toast(v);return;}
+ render();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&S.acct){S.acct=false;render();}});
+render();
+})();
+</script>
+</body>
+</html>
