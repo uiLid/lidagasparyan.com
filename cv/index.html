@@ -207,10 +207,10 @@
     document.querySelectorAll('[data-set]').forEach(function(b){b.setAttribute('aria-pressed', b.dataset.set===l?'true':'false');});
     pdf.href = l==='ru' ? '/cv-ru.pdf' : '/cv.pdf';
     document.title = l==='ru' ? 'Резюме — Лида Гаспарян, Senior Product Designer' : 'CV — Lida Gasparyan, Senior Product Designer';
-    try{localStorage.setItem('cv-lang',l);}catch(e){}
+    try{localStorage.setItem('lg-lang',l);}catch(e){}
   }
   var q=new URLSearchParams(location.search).get('lang'), saved=null;
-  try{saved=localStorage.getItem('cv-lang');}catch(e){}
+  try{saved=localStorage.getItem('lg-lang');}catch(e){}
   var nav=(navigator.language||'').toLowerCase().indexOf('ru')===0?'ru':'en';
   set(q==='ru'||q==='en'?q:(saved||nav));
   document.querySelectorAll('[data-set]').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set);});});
