@@ -480,3 +480,11 @@ RU.update({
 
 # book via Instagram
 RU.update({"Last step: send this summary to me on Instagram. Tap the button, the summary is copied, then paste it into the chat and I will confirm a time.": "Последний шаг: отправьте это мне в Instagram. Нажмите кнопку, текст скопируется, вставьте его в чат, и я подтвержу время.", "Copy and send on Instagram": "Скопировать и отправить в Instagram", "Prefer to chat?": "Удобнее в переписке?", "Message Be You on Instagram": "Напишите Be You в Instagram", "and write “call”.": "и отправьте «звонок»."})
+
+RU.update({
+ "A working prototype rebuilt from the final screens. Hide and show the menu, open Ecommerce and 10Web Payments, or click the avatar to switch workspaces and reach Security.": "Рабочий прототип, собранный по финальным экранам. Сверните и разверните меню, откройте Ecommerce и 10Web Payments или нажмите на аватар, чтобы переключить рабочее пространство и перейти в Security.",
+ "A working prototype rebuilt from the final screens. Drag a post to another day, turn brands on and off, write a post with AI and add it to the calendar. The brand card on the left opens the onboarding.": "Рабочий прототип, собранный по финальным экранам. Перетащите пост на другой день, включайте и отключайте бренды, напишите пост с AI и добавьте его в календарь. Карточка бренда слева открывает онбординг.",
+ "A working prototype rebuilt from the final screens. Sign up, click an event to open it, click an empty slot to add one, and use the filters on the right.": "Рабочий прототип, собранный по финальным экранам. Зарегистрируйтесь, нажмите на событие, чтобы открыть его, нажмите на пустую ячейку, чтобы добавить новое, и используйте фильтры справа.",
+ "A working prototype rebuilt from the final screens. Open a quick action, reply to a message in the inbox, or pause the website from the status switch.": "Рабочий прототип, собранный по финальным экранам. Откройте быстрое действие, ответьте на сообщение во входящих или приостановите сайт переключателем статуса.",
+ "A working prototype rebuilt from the final screens. Start playing, choose a nickname, then answer a round of questions or start a duel with a student who has a similar rating.": "Рабочий прототип, собранный по финальным экранам. Нажмите Start playing, выберите никнейм, затем ответьте на раунд вопросов или начните дуэль с учеником с похожим рейтингом."
+})
