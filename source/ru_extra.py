@@ -488,3 +488,7 @@ RU.update({
  "A working prototype rebuilt from the final screens. Open a quick action, reply to a message in the inbox, or pause the website from the status switch.": "Рабочий прототип, собранный по финальным экранам. Откройте быстрое действие, ответьте на сообщение во входящих или приостановите сайт переключателем статуса.",
  "A working prototype rebuilt from the final screens. Start playing, choose a nickname, then answer a round of questions or start a duel with a student who has a similar rating.": "Рабочий прототип, собранный по финальным экранам. Нажмите Start playing, выберите никнейм, затем ответьте на раунд вопросов или начните дуэль с учеником с похожим рейтингом."
 })
+
+RU.update({"Back to top": "Наверх"})
+
+RU.update({"All case studies": "Все кейсы"})
