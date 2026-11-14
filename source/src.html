@@ -502,6 +502,28 @@ fieldset.field > legend + * { clear: both; }
 .site-nav, .brand { white-space: nowrap; }
 @media (min-width: 761px) { .site-nav { flex-wrap: nowrap; } .site-header .wrap { flex-wrap: nowrap !important; } }
 @media (min-width: 761px) and (max-width: 1360px) { .site-nav a:not(.btn) { padding: 8px 11px; } .site-nav a:not(.btn):not([aria-current="page"])::after { display: none; } }
+
+/* leadership pages */
+.lhero { margin-top: clamp(28px, 4vw, 44px); border-radius: 22px; overflow: hidden; border: 1px solid var(--line); }
+.lhero img { display: block; width: 100%; height: auto; }
+.lnums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+.lnums > div { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; }
+.lnums b { font: 700 clamp(1.8rem, 3.2vw, 2.6rem)/1 var(--display); letter-spacing: -.02em; color: var(--fg); }
+.lnums b::after { content: "*"; color: var(--brand); font-size: .6em; vertical-align: top; margin-left: 2px; }
+.lnums span { color: var(--muted); font-size: .92rem; line-height: 1.35; }
+.lgal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 36px); margin-top: clamp(28px, 4vw, 44px); align-items: start; }
+.lgal.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lgal.three .fig:nth-child(-n+3) { grid-column: span 1; }
+.lgal.three .fig:nth-child(4), .lgal.three .fig:nth-child(5) { grid-column: span 1; }
+.lgal .fig figcaption h3 { font-size: 1rem; }
+.lgal .fig figcaption p { font-size: .9rem; }
+@media (max-width: 760px) { .lnums { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lgal, .lgal.three { grid-template-columns: 1fr; } }
+
+.page .lsec > h2 { grid-row: 1 / span 1; }
+.page .lsec > .lgal, .page .lsec > .shots { grid-column: 1 / -1; max-width: none; }
+.lgal .fig figcaption { grid-template-columns: minmax(0, 1fr) !important; gap: 4px; }
+
+@media (max-width: 440px) { .site-header .cv-btn { display: none; } }
 </style>
 
 <button class="skip" id="skip" type="button">Skip to content</button>
@@ -1226,59 +1248,63 @@ fieldset.field > legend + * { clear: both; }
 <div data-route="leadership" class="page" tabindex="-1" aria-label="Leadership">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">/</span><span aria-current="page">Leadership</span></nav>
   <h1 style="font-size:clamp(2.2rem,5vw,3.6rem);margin-top:16px">Leadership</h1>
-  <p class="lead" style="margin-top:14px;color:var(--muted);max-width:56ch;font-size:1.15rem">Leading teams at a startup summit and at a café. Each experience has its own page.</p>
-  <div class="grid two" style="margin-top:32px">
-    <a class="card" href="#lead-summit"><div class="thumb"><img src="{{img:cov-lead-summit}}" alt="" width="1800" height="1100"></div><div><h3>Seaside Startup Summit</h3><p>Team Lead, then Head of Team Leads, in India, Armenia and the UAE.</p></div><div class="tags"><span class="tag accent">Since 2018</span><span class="tag">Teams</span></div></a>
-    <a class="card" href="#lead-lermontov"><div class="thumb"><img src="{{img:cov-lead-lermontov}}" alt="" width="1800" height="1100"></div><div><h3>Café Lermontov, Director</h3><p>Four months running a seaside café, from staff and orders to events and ads.</p></div><div class="tags"><span class="tag accent">Four months</span><span class="tag">Operations</span></div></a>
-  </div>
+  <p class="lead" style="margin-top:14px;color:var(--muted);max-width:56ch;font-size:1.15rem">Leading teams at a startup summit, a seaside café and a tech startup. Each experience has its own page.</p>
+  <div class="grid two" style="margin-top:32px"><a class="card" href="#lead-summit"><div class="thumb"><img src="{{img:cov-lead-summit}}" alt="" width="1800" height="1100"></div><div><h3>Seaside Startup Summit</h3><p>Team Lead, then Head of Team Leads, in India, Armenia and the UAE.</p></div><div class="tags"><span class="tag accent">Since 2018</span><span class="tag">Teams</span></div></a><a class="card" href="#lead-lermontov"><div class="thumb"><img src="{{img:cov-lead-lermontov}}" alt="" width="1800" height="1100"></div><div><h3>Café Lermontov, Director</h3><p>Four months running a seaside café: the team, standards, events and ads.</p></div><div class="tags"><span class="tag accent">Four months</span><span class="tag">Operations</span></div></a><a class="card" href="#lead-treeme"><div class="thumb"><img src="{{img:cov-lead-treeme}}" alt="" width="1800" height="1100"></div><div><h3>Treeme and SoulMe, Product Director</h3><p>Strategy, KPIs, job descriptions and the team workspace at an eco-tech startup.</p></div><div class="tags"><span class="tag accent">2025–2026</span><span class="tag">Product</span></div></a></div>
 </div>
 <div data-route="lead-summit" class="page" tabindex="-1" aria-label="Seaside Startup Summit">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">/</span><a href="#leadership">Leadership</a><span aria-hidden="true">/</span><span aria-current="page">Seaside Startup Summit</span></nav>
   <header class="case-hero">
-    <p class="label">Leadership · Experience</p>
+    <p class="label">Leadership · Events</p>
     <h1>Seaside Startup Summit</h1>
-    <p class="lead">A startup summit that moves from place to place, and the teams that make it work.</p>
-    <dl class="meta-row">
-      <div class="meta"><dt>Role</dt><dd>Team Lead, then Head of Team Leads</dd></div>
-      <div class="meta"><dt>Since</dt><dd>2018</dd></div>
-      <div class="meta"><dt>Places</dt><dd>India, Armenia, United Arab Emirates</dd></div>
-    </dl>
+    <p class="lead">A startup summit that moves to a new place every edition. I lead the people who lead the teams.</p>
+    <dl class="meta-row"><div class="meta"><dt>Role</dt><dd>Team Lead, then Head of Team Leads</dd></div><div class="meta"><dt>Since</dt><dd>2018</dd></div><div class="meta"><dt>Places</dt><dd>India, Armenia, United Arab Emirates</dd></div></dl>
   </header>
-  <div class="glance">
-    <div class="gl"><span class="k">What I did</span><p>I started by leading one team and later led the people who lead the teams.</p></div>
-    <div class="gl"><span class="k">The challenge</span><p>The summit takes place in a different place each time, so teams, rules and logistics are rebuilt on the spot.</p></div>
-    <div class="gl"><span class="k">The result</span><p>A repeatable way of working that new Team Leads can pick up quickly.</p></div>
-  </div>
-  <section class="sec"><h2>Places</h2><p>Each edition brought a new setting.</p><ul class="also"><li><b style="color:var(--fg)">India.</b> Rajasthan and Goa.</li><li><b style="color:var(--fg)">Armenia.</b> Lake Sevan.</li><li><b style="color:var(--fg)">United Arab Emirates.</b> Ras Al Khaimah and Al Marjan Island.</li></ul></section>
-  <div class="shots">
-    <figure class="fig"><div class="shot"><img src="{{img:cov-lead-summit}}" width="1800" height="1100" alt="Seaside Startup Summit with the places visited: India Rajasthan and Goa, Armenia Sevan, UAE Ras Al Khaimah and Al Marjan Island."></div><figcaption><h3>Where the summit took place</h3><p>Five locations in three countries.</p></figcaption></figure>
-  </div>
-  <p class="note" style="margin-top:32px">Photos from the summit can be added to this page.</p>
+  <div class="lhero"><img src="{{img:sum-team1}}" alt="The Seaside Startup Summit team in red team shirts, sitting together among pine trees." width="1400" height="934"></div>
+  <div class="lnums"><div><b>2018</b><span>leading summit teams since</span></div><div><b>3</b><span>countries</span></div><div><b>5</b><span>locations</span></div><div><b>2</b><span>roles, team and leads</span></div></div>
+  <section class="sec lsec"><h2>The context</h2><p>Every edition happens somewhere new: Rajasthan and Goa in India, Lake Sevan in Armenia, Ras Al Khaimah and Al Marjan Island in the UAE. The site, the rules and the logistics are rebuilt each time, and many volunteers meet for the first time on arrival.</p></section>
+  <section class="sec lsec"><h2>My role</h2><p>I started by leading one team. Later I became Head of Team Leads: I prepare the leads before the summit, set how the teams work, and I am the person they come to when something breaks on site.</p></section>
+  <section class="sec lsec"><h2>On the ground</h2><p>Teams in red, radios on the belt, and a lot of time outdoors.</p><div class="lgal"><figure class="fig"><div class="shot"><img src="{{img:sum-leads}}" alt="Team leads with radios and badges at the summit camp." width="1400" height="932"></div><figcaption><h3>Team leads on duty</h3><p>Radios, badges and a quick plan for the day.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:sum-team2}}" alt="Summit team members talking and laughing together." width="1400" height="934"></div><figcaption><h3>Between sessions</h3><p>Most problems are solved in short talks like this.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:sum-arrival}}" alt="A participant arriving at the camp with a suitcase, waving." width="1400" height="934"></div><figcaption><h3>Arrival day</h3><p>The first hour sets the tone for the whole week.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:sum-friends}}" alt="Two team members in summit shirts smiling at the camera." width="1400" height="932"></div><figcaption><h3>The team</h3><p>Volunteers who often meet for the first time on site.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>Recent editions</h2><div class="shots shots-inline"><figure class="fig"><div class="shot"><img src="{{img:sum-sevan}}" alt="Sevan Startup Summit 2025 banner over Lake Sevan, July 20 to 26, 2025." width="1400" height="788"></div><figcaption><h3>Sevan Startup Summit 2025</h3><p>Lake Sevan, Armenia, July 20 to 26, 2025.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:sum-rajasthan}}" alt="Rajasthan Startup Summit 2026 sponsorship deck cover with a sunset." width="1400" height="801"></div><figcaption><h3>Rajasthan Startup Summit 2026</h3><p>Taj Amer, Jaipur, India, February 27 to March 1, 2026.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>The result</h2><p>A repeatable way of working that new Team Leads can pick up quickly, wherever the next summit takes place.</p></section>
   <nav class="pager" aria-label="More case studies" style="margin-top:64px"><a class="prev" href="#leadership"><span class="mono">Previous</span><span class="t">Leadership</span></a><a class="next" href="#lead-lermontov"><span class="mono">Next</span><span class="t">Café Lermontov, Director</span></a></nav>
 </div>
 <div data-route="lead-lermontov" class="page" tabindex="-1" aria-label="Café Lermontov, Director">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">/</span><a href="#leadership">Leadership</a><span aria-hidden="true">/</span><span aria-current="page">Café Lermontov, Director</span></nav>
   <header class="case-hero">
-    <p class="label">Leadership · Experience</p>
+    <p class="label">Leadership · Hospitality</p>
     <h1>Café Lermontov, Director</h1>
-    <p class="lead">I ran a seaside café-restaurant and everything around it for four months.</p>
-    <dl class="meta-row">
-      <div class="meta"><dt>Role</dt><dd>Director</dd></div>
-      <div class="meta"><dt>Time</dt><dd>Four months, one season</dd></div>
-      <div class="meta"><dt>Team</dt><dd>The whole staff of every zone</dd></div>
-    </dl>
+    <p class="lead">One summer season running a seaside café on the Black Sea: the team, the supplies, the events and the brand.</p>
+    <dl class="meta-row"><div class="meta"><dt>Role</dt><dd>Director</dd></div><div class="meta"><dt>Time</dt><dd>Four months, one season</dd></div><div class="meta"><dt>Team</dt><dd>The whole staff of every zone</dd></div></dl>
   </header>
-  <div class="glance">
-    <div class="gl"><span class="k">Scope</span><p>Café, canteen, game zone, grill zone, beach zone and more.</p></div>
-    <div class="gl"><span class="k">Business</span><p>Product orders, staff, events and day-to-day running.</p></div>
-    <div class="gl"><span class="k">Brand</span><p>Menus, banners, event screens, social media and ads.</p></div>
-  </div>
-  <section class="sec"><h2>What I was responsible for</h2><ul class="also"><li><b style="color:var(--fg)">People.</b> I led the whole staff across all zones.</li><li><b style="color:var(--fg)">Supply.</b> I made the product orders.</li><li><b style="color:var(--fg)">Events.</b> I organised events and designed the screens shown at them.</li><li><b style="color:var(--fg)">Marketing.</b> Social media posts, an updated Yandex business account and paid ads.</li><li><b style="color:var(--fg)">Design.</b> Two menus for the café, a menu for the grill zone, and banners. See them in the design case study.</li></ul></section>
-  <p class="note" style="margin-top:8px"><a href="#case-lermontov">See the menus and banners</a></p>
-  <div class="shots">
-    <figure class="fig"><div class="shot"><img src="{{img:cov-lead-lermontov}}" width="1800" height="1100" alt="Café Lermontov, Director for four months, with a menu cover and the zones I led."></div><figcaption><h3>The café and its zones</h3><p>The zones I led and the menu cover I designed.</p></figcaption></figure>
-  </div>
-  <nav class="pager" aria-label="More case studies" style="margin-top:64px"><a class="prev" href="#lead-summit"><span class="mono">Previous</span><span class="t">Seaside Startup Summit</span></a><a class="next" href="#leadership"><span class="mono">Back to leadership</span><span class="t">Leadership</span></a></nav>
+  <div class="lhero"><img src="{{img:cov-lead-lermontov}}" alt="Café Lermontov team guide, a Caucasian show poster and a lunch story." width="1800" height="1100"></div>
+  <div class="lnums"><div><b>4</b><span>months, one season</span></div><div><b>5+</b><span>zones: café, canteen, grill, games, beach</span></div><div><b>12</b><span>slides in the team guide</span></div><div><b>200+</b><span>guests a shift on summer weekends</span></div></div>
+  <section class="sec lsec"><h2>The context</h2><p>Lermontov is a seasonal café-restaurant by the sea. It opens for the summer, hires most of its staff for the season and runs several zones at once. I was responsible for all of it: people, product orders, events, marketing and design.</p></section>
+  <section class="sec lsec"><h2>A guide for the seasonal team</h2><p>Seasonal staff need to learn fast. I wrote a short guide called “Team” that covers our values, the guest experience, appearance, upselling, conflicts, teamwork, money and honesty, and how to grow.</p><div class="shots shots-inline"><figure class="fig"><div class="shot"><img src="{{img:ler-guide1}}" alt="Cover slide of the team guide titled Team, beach café standards." width="1100" height="720"></div><figcaption><h3>“Team”, the seasonal staff guide</h3><p>Beach café standards in twelve short slides.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:ler-guide-values}}" alt="Slide with five team values: responsibility, speed, honesty, teamwork, energy." width="1100" height="720"></div><figcaption><h3>Five values</h3><p>Responsibility, speed, honesty, teamwork and energy.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>Service standards</h2><p>Summer weekends can bring more than 200 guests a shift, so the standards are simple numbers everyone can remember.</p><ul class="also"><li><b style="color:var(--fg)">Under 2 minutes</b> to greet a guest after they sit down.</li><li><b style="color:var(--fg)">Under 5 minutes</b> for drinks to reach the table.</li><li><b style="color:var(--fg)">Under 15 minutes</b> for the order to reach the table.</li><li><b style="color:var(--fg)">Under 3 minutes</b> to bring the bill after it is asked for.</li></ul><div class="shots shots-inline"><figure class="fig"><div class="shot"><img src="{{img:ler-guide-speed}}" alt="Slide with four service time standards on a green background." width="1100" height="720"></div><figcaption><h3>Speed in the high season</h3><p>Speed is respect for the guest’s time.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>A path to grow</h2><p>People stay longer when they can see where they are going. Promotion is earned by reliability, guest reviews and helping the team.</p><ul class="also"><li><b style="color:var(--fg)">Trainee,</b> weeks 1 to 2: watch, learn the menu and the systems.</li><li><b style="color:var(--fg)">Waiter,</b> week 3 on: runs a station alone.</li><li><b style="color:var(--fg)">Shift lead,</b> by invitation: trains new people and solves conflicts.</li></ul><div class="shots shots-inline"><figure class="fig"><div class="shot"><img src="{{img:ler-guide-growth}}" alt="Slide showing the growth path from trainee to waiter to shift lead." width="1100" height="720"></div><figcaption><h3>The growth system</h3><p>Three steps, each with clear expectations.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>Tools for every zone</h2><p>Small printed tools kept each zone running without me standing next to it.</p><div class="lgal two-tall"><figure class="fig"><div class="shot"><img src="{{img:ler-partner}}" alt="Discount card for a partner guest house with a map to the café." width="595" height="842"></div><figcaption><h3>Partner discount cards</h3><p>For nearby guest houses, with a map that leads to the café.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:ler-games}}" alt="Visit log for the kids game zone with arrival, departure and payment columns." width="595" height="842"></div><figcaption><h3>Game zone log</h3><p>Child, parent, time in and out, payment.</p></figcaption></figure></div><div class="shots shots-inline"><figure class="fig"><div class="shot"><img src="{{img:ler-contest}}" alt="Sheet of numbered contest cards with the café logo." width="842" height="595"></div><figcaption><h3>Contest cards</h3><p>Numbered cards for evening games with guests.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>Events and marketing</h2><p>I organised the events and made everything that announced them: screens, posters, social media posts and stories. I also updated the Yandex business profile and ran paid ads.</p><div class="lgal three"><figure class="fig"><div class="shot"><img src="{{img:ler-dj}}" alt="Event screen for a DJ night at Lermontov, starting at 22:00." width="1000" height="563"></div><figcaption><h3>DJ nights</h3><p>Event screens for the evening program.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:ler-show}}" alt="Poster for the Caucasian show with neon dancers." width="1000" height="667"></div><figcaption><h3>Caucasian show</h3><p>A weekly show for evening guests.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:ler-cocktail}}" alt="Cocktail promo screen for a berry cocktail called Love is." width="1000" height="563"></div><figcaption><h3>Cocktail menu</h3><p>One screen for each signature drink.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:ler-story-open}}" alt="Instagram story announcing the opening on June 11." width="507" height="900"></div><figcaption><h3>Opening day</h3><p>Stories that counted down to the season.</p></figcaption></figure><figure class="fig"><div class="shot"><img src="{{img:ler-story-lunch}}" alt="Instagram story for lunch with a sea view." width="507" height="900"></div><figcaption><h3>Lunch with a view</h3><p>Daily stories about the food and the sea.</p></figcaption></figure></div></section>
+  <p class="note" style="margin-top:8px"><a href="#case-lermontov">See the menus and banners in the design case study</a></p>
+  <nav class="pager" aria-label="More case studies" style="margin-top:64px"><a class="prev" href="#lead-summit"><span class="mono">Previous</span><span class="t">Seaside Startup Summit</span></a><a class="next" href="#lead-treeme"><span class="mono">Next</span><span class="t">Treeme and SoulMe, Product Director</span></a></nav>
+</div>
+<div data-route="lead-treeme" class="page" tabindex="-1" aria-label="Treeme and SoulMe, Product Director">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">/</span><a href="#leadership">Leadership</a><span aria-hidden="true">/</span><span aria-current="page">Treeme and SoulMe, Product Director</span></nav>
+  <header class="case-hero">
+    <p class="label">Leadership · Product</p>
+    <h1>Treeme and SoulMe, Product Director</h1>
+    <p class="lead">At an eco-tech startup I moved from leading design to directing the product: strategy, KPIs, the team and the systems that keep it working.</p>
+    <dl class="meta-row"><div class="meta"><dt>Role</dt><dd>Product Design Lead, then Product Director</dd></div><div class="meta"><dt>Time</dt><dd>August 2025 to January 2026</dd></div><div class="meta"><dt>Team</dt><dd>About 10 people: developers, managers, QA, admin</dd></div></dl>
+  </header>
+  <div class="lhero"><img src="{{img:cov-lead-treeme}}" alt="Treeme team workspace in Notion and the monthly AARRR metrics table." width="1800" height="1100"></div>
+  <div class="lnums"><div><b>~10</b><span>people in the team</span></div><div><b>6</b><span>role pages with KPIs</span></div><div><b>5</b><span>AARRR metrics a month</span></div><div><b>1:1</b><span>with every team member</span></div></div>
+  <section class="sec lsec"><h2>The context</h2><p>Treeme is a tree-planting platform in Armenia: people fund reforestation and organisations track their impact on dashboards. SoulMe was the second product. I joined as Product Design Lead and became Product Director, reporting to the founder.</p><p class="note"><a href="#case-treeme">See the Treeme design case study</a></p></section>
+  <section class="sec lsec"><h2>Strategy</h2><ul class="also"><li><b style="color:var(--fg)">Product strategy.</b> A roadmap prioritised by business outcomes, with clear success metrics.</li><li><b style="color:var(--fg)">Research.</b> Market, policy and competitor research to find opportunities.</li><li><b style="color:var(--fg)">Offer Lab.</b> Short sessions to test new product and market ideas before building them.</li><li><b style="color:var(--fg)">Growth.</b> A sales roadmap, a CRM, partnerships and events.</li></ul></section>
+  <section class="sec lsec"><h2>One workspace for the team</h2><p>I built the team’s Notion workspace so that roles, rules, numbers and plans live in one place.</p><div class="shots shots-inline"><figure class="fig"><div class="shot"><img src="{{img:tm-map}}" alt="Map of the Treeme team workspace with four areas: people, policies, product and numbers, sales and partners." width="1800" height="700"></div><figcaption><h3>Treeme · Team</h3><p>People, rules, delivery and growth, each with its own pages and databases.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>Job descriptions and KPIs</h2><p>Every role got the same page: why it exists, what it is responsible for, how it is measured and how the person can grow. Shared databases for KPIs, risks, content, learning and tasks connect the roles.</p><div class="shots shots-inline"><figure class="fig"><div class="shot"><img src="{{img:tm-role}}" alt="Role page template with purpose, responsibilities, KPIs and development path, plus shared databases." width="1800" height="760"></div><figcaption><h3>The role template</h3><p>Used for every role, from Product Director to Frontend Developer.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>Metrics every month</h2><p>Each month the team set a target for the AARRR metrics and the finance metrics, then wrote down the actual result, the difference and why it happened. Weekly reports and a deadline board kept the work between those check-ins visible.</p><div class="shots shots-inline"><figure class="fig"><div class="shot"><img src="{{img:tm-metrics}}" alt="AARRR metrics: acquisition, activation, retention, referral, revenue, with a target and actual table." width="1800" height="800"></div><figcaption><h3>AARRR, target against actual</h3><p>One row per metric: formula, unit, target, actual and a comment.</p></figcaption></figure></div></section>
+  <section class="sec lsec"><h2>People</h2><ul class="also"><li><b style="color:var(--fg)">One-on-ones.</b> Regular one-on-ones with every person in the team.</li><li><b style="color:var(--fg)">Skills matrix.</b> Key skills, tools and languages for everyone, so work goes to the right person.</li><li><b style="color:var(--fg)">Onboarding.</b> Onboarding stages, a welcome book and a guide to the introductory period.</li><li><b style="color:var(--fg)">Policies.</b> Culture, days off, vacations and benefits written down in one place.</li><li><b style="color:var(--fg)">Design team.</b> I also led the graphic design work with two contract designers.</li></ul></section>
+  <section class="sec lsec"><h2>The result</h2><p>The team worked from shared, written rules: anyone could open one page and find their role, their goals and this month’s numbers.</p></section>
+  <nav class="pager" aria-label="More case studies" style="margin-top:64px"><a class="prev" href="#lead-lermontov"><span class="mono">Previous</span><span class="t">Café Lermontov, Director</span></a><a class="next" href="#leadership"><span class="mono">Back to leadership</span><span class="t">Leadership</span></a></nav>
 </div>
 <div data-route="case-aiimage" class="page" tabindex="-1" aria-label="AI Image Generator for Elementor">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">/</span><a href="#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">AI Image Generator for Elementor</span></nav>
@@ -2293,7 +2319,7 @@ fieldset.field > legend + * { clear: both; }
     })();
     // 1. hero image: reuse the cover already on the work card
     var card = document.querySelector('a.card[href="#' + route + '"] img');
-    if (card && card.getAttribute('src')) {
+    if (card && card.getAttribute('src') && !page.querySelector('.lhero')) {
       var fg = mk('figure', 'case-cover'), im = mk('img'); im.src = card.getAttribute('src'); im.alt = ''; im.width = 1800; im.height = 1100; fg.appendChild(im);
       hero.insertAdjacentElement('afterend', fg);
     }
