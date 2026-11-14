@@ -697,3 +697,5 @@ RU.update({
 })
 
 RU.update({"Two contract designers.": "Два дизайнера на контракте.", "I set up and ran the graphic design process for the team.": "Я выстроила и вела процесс графического дизайна в команде."})
+
+RU.update({"Team of ~10": "Команда ~10 человек", "Strategy, KPIs, job descriptions and the team workspace I built as Product Director.": "Стратегия, KPI, должностные инструкции и рабочее пространство команды, которые я выстроила как продакт-директор."})
