@@ -664,3 +664,36 @@ RU.update({
 "2025–2026": "2025–2026",
 "Product": "Продукт"
 })
+
+RU.update({
+"Product Design Lead, then Product Director: the platform, the team and the systems behind it.": "Лид продуктового дизайна, затем продакт-директор: платформа, команда и системы, на которых она держится.",
+"Product design": "Продуктовый дизайн",
+"Team Lead": "Тимлид",
+"Product Director": "Продакт-директор",
+"I joined Treeme as Product Design Lead and owned design across the whole product: the website, the user dashboard, the admin panel and the presentations. I led the graphic design work with two contract designers.": "Я пришла в Treeme лидом продуктового дизайна и отвечала за дизайн всего продукта: сайт, личный кабинет, админ-панель и презентации. Я вела графический дизайн с двумя дизайнерами на контракте.",
+"One visual language.": "Один визуальный язык.",
+"The site, the dashboard, the admin panel and the decks share the same type, colours and components.": "Сайт, кабинет, админка и презентации используют одни шрифты, цвета и компоненты.",
+"Clear briefs.": "Понятные задачи.",
+"Each designer got a brief, a reference and a deadline, so work came back ready to review.": "Каждый дизайнер получал бриф, референс и срок, поэтому работа приходила готовой к ревью.",
+"Design with the developers.": "Дизайн вместе с разработчиками.",
+"I worked with the frontend developers on what to build first and how screens behave.": "Я работала с фронтенд-разработчиками над тем, что делать первым и как ведут себя экраны.",
+"My role as Team Lead": "Моя роль тимлида",
+"Later I became Product Director, reporting to the founder. I kept the design direction and took on strategy, KPIs and the whole team of about ten people: developers, managers, QA and admin.": "Позже я стала продакт-директором с подчинением основателю. Я сохранила за собой направление дизайна и взяла стратегию, KPI и всю команду из около десяти человек: разработчиков, менеджеров, QA и администратора.",
+"Strategy and KPIs.": "Стратегия и KPI.",
+"A roadmap prioritised by business outcomes, and monthly AARRR and finance metrics with target, actual and the reason for the gap.": "Роадмап с приоритетами по бизнес-результатам и ежемесячные метрики AARRR и финансов: цель, факт и причина разницы.",
+"Roles.": "Роли.",
+"A job description with KPIs and a growth path for every role.": "Должностная инструкция с KPI и путём роста для каждой роли.",
+"People.": "Люди.",
+"One-on-ones with everyone, a skills matrix, onboarding stages and written team policies.": "Встречи один на один с каждым, матрица навыков, этапы онбординга и записанные правила команды.",
+"Growth.": "Рост.",
+"A sales roadmap, a CRM, partnerships and events.": "Роадмап продаж, CRM, партнёрства и мероприятия.",
+"The team workspace I built in Notion": "Рабочее пространство команды, которое я собрала в Notion",
+"Roles, rules, numbers and plans in one place.": "Роли, правила, цифры и планы в одном месте.",
+"Read the full leadership story": "Читать всю историю о лидерстве",
+"From design lead to Product Director": "От лида дизайна к продакт-директору",
+"Product design · Team Lead": "Продуктовый дизайн · Тимлид",
+"Product Design Lead, then Product Director": "Лид продуктового дизайна, затем продакт-директор",
+"A platform that lets people and companies plant trees in Armenia and follow each tree afterwards. I joined as Product Design Lead and became Product Director.": "Платформа, на которой люди и компании сажают деревья в Армении и потом следят за каждым деревом. Я пришла лидом продуктового дизайна и стала продакт-директором."
+})
+
+RU.update({"Two contract designers.": "Два дизайнера на контракте.", "I set up and ran the graphic design process for the team.": "Я выстроила и вела процесс графического дизайна в команде."})
