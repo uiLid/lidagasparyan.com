@@ -80,6 +80,10 @@
 .page .lsec > h2 { position: static !important; }
 
 .page .sec > h2 { grid-row: 1 / span 1 !important; }
+
+.live-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 18px; }
+.live-row .note { color: var(--muted); font-size: .85rem; }
+.tag.live::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 6px; vertical-align: middle; }
 </style>
 </head>
 <body>
