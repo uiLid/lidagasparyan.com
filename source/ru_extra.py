@@ -701,3 +701,33 @@ RU.update({"Two contract designers.": "Два дизайнера на контр
 RU.update({"Team of ~10": "Команда ~10 человек", "Strategy, KPIs, job descriptions and the team workspace I built as Product Director.": "Стратегия, KPI, должностные инструкции и рабочее пространство команды, которые я выстроила как продакт-директор."})
 
 RU.update({"Senior Product Designer · Yerevan, Armenia": "Senior Product Designer · Ереван, Армения"})
+
+RU.update({
+"Team": "Команда",
+"Solo designer, with the client’s lead owning the proposal and development plan": "Один дизайнер; предложение и план разработки вёл руководитель со стороны клиента",
+"Timeline": "Сроки",
+"4 weeks of design, planned inside a 9-week project": "4 недели дизайна в рамках 9-недельного проекта",
+"There were no interviews at this stage: the four personas come from the brief and the client’s description of the teams, so they are assumptions to test.": "На этом этапе интервью не было: четыре персоны собраны из брифа и рассказа клиента о командах, поэтому это гипотезы, которые нужно проверить.",
+"Where it stands": "Где проект сейчас",
+"The prototype runs with three roles and two themes, and the design system is ready for development. It has not been tested with planners yet, so I cannot say yet whether the legends work. The test below is how I will find out.": "Прототип работает с тремя ролями и двумя темами, дизайн-система готова к разработке. С планировщиками его ещё не тестировали, поэтому я пока не могу сказать, работают ли легенды. Тест ниже — то, как я это проверю.",
+"How I will know it works": "Как я пойму, что это работает",
+"Five planners or engineers from the client’s team, one task each: find the fastest-moving slope and say what is near it.": "Пять планировщиков или инженеров из команды клиента, одна задача: найти самый быстрый склон и сказать, что рядом с ним.",
+"Measure.": "Что измеряю.",
+"Who finishes, how long it takes, and whether they read coherence as confidence or as a data error.": "Кто справился, сколько времени ушло и читают ли когерентность как уверенность или как ошибку данных.",
+"Change the design if": "Меняю дизайн, если",
+"fewer than four finish in 30 seconds, or two people misread the coherence warning.": "меньше четырёх справились за 30 секунд или двое неверно поняли предупреждение о когерентности.",
+"Then.": "Потом.",
+"Check the colour scales on the real data and design a mobile view for field visits.": "Проверить цветовые шкалы на реальных данных и спроектировать мобильную версию для выездов.",
+"I will add the results here when the test is done.": "Добавлю результаты сюда после теста.",
+"case studies with live prototypes you can click": "кейсов с живыми прототипами, их можно покликать",
+"Case studies told through the real work. Six have live prototypes you can click. Filter by discipline.": "Кейсы, показанные через реальную работу. В шести есть живые прототипы, их можно покликать. Фильтруйте по направлению.",
+"When the scope changed": "Когда изменился объём",
+"The first brief was one map for one kind of user. Halfway through, the client added three login levels: Users, a Superuser in the management department and a Superadmin.": "Первый бриф — одна карта для одного типа пользователя. На середине проекта клиент добавил три уровня входа: пользователей, Superuser в отделе управления и Superadmin.",
+"That broke the plan in two places. The map screen had no room for review and admin tools, and the two new areas, Management and Admin, both needed the same list of people.": "Это сломало план в двух местах. На экране карты не было места для проверки и админ-инструментов, а двум новым разделам, Management и Admin, нужен был один и тот же список людей.",
+"I kept the map-first screen for Users, because they only read published data, and moved review and admin work into areas that appear only for the roles that need them. The trade-off: the product is no longer one screen for everyone, and admins switch between the map and their own areas.": "Я оставила карту главным экраном для пользователей, потому что они только читают опубликованные данные, а проверку и администрирование вынесла в разделы, которые видят только нужные роли. Компромисс: продукт больше не один экран для всех, и администраторы переключаются между картой и своими разделами.",
+"A direction I dropped": "Направление, от которого я отказалась",
+"My first admin layout added Management and Admin as two more tabs in the top bar, six in total. When I reviewed it, it did not hold up: the same people were listed in two places, approving new data was one tab away from the data itself, and the bar had no room to grow.": "В первой версии я добавила Management и Admin как ещё две вкладки в верхней панели, всего шесть. При проверке это не сработало: одни и те же люди были в двух местах, одобрение новых данных было на вкладку дальше от самих данных, а панели некуда было расти.",
+"The next version for admins groups the work by task in a sidebar: Monitor, Publish and Admin, with a home screen that starts from what needs attention. Users keep the single map screen.": "Следующая версия для администраторов группирует работу по задачам в боковом меню: Monitor, Publish и Admin, а главный экран начинается с того, что требует внимания. У пользователей остаётся один экран с картой.",
+"From six tabs to three groups": "От шести вкладок к трём группам",
+"The dropped top bar on the left, the admin sidebar on the right.": "Слева — верхняя панель, от которой я отказалась, справа — боковое меню для администраторов."
+})
