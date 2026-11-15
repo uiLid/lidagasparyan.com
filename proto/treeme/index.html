@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Treeme · prototype · Lida Gasparyan</title>
+<style>
+@font-face{font-family:'Noto Sans Armenian';src:url(../assets/noto-armenian.woff2) format('woff2');font-weight:100 900;unicode-range:U+0308,U+0530-058F,U+2010,U+2024,U+25CC,U+FB13-FB17;font-display:swap}
+@font-face{font-family:'Noto Sans Armenian';src:url(../assets/noto-armenian-latin.woff2) format('woff2');font-weight:100 900;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215;font-display:swap}
+:root{--ink:#0E2A0C;--deep:#1E3F32;--lime:#98D91B;--lime2:#D9FF91;--blue:#4BAFF5;--muted:#4A5A50;--line:#ECEEEA}
+*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{margin:0}
+body{font-family:'Noto Sans Armenian',system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;min-width:1200px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{width:1440px;margin:0 auto;position:relative}
+/* header */
+.hdr{position:absolute;left:48px;right:48px;top:16px;height:80px;z-index:20;display:flex;align-items:center;padding:0 16px 0 32px;border-radius:40px;border:1px solid rgba(255,255,255,.14);background:rgba(20,40,28,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff}
+.hdr.light{position:sticky;top:0;left:auto;right:auto;margin:0 auto;width:1440px;border-radius:0;border:0;border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);color:var(--ink);padding:0 120px;height:96px}
+.logo{font-weight:700;font-size:30px;letter-spacing:-.04em;display:flex;align-items:baseline;cursor:pointer}.logo b{color:#8DCB3C;font-weight:700}.logo span{font-weight:500}
+.nav{display:flex;gap:40px;margin:0 auto;font-size:16px}
+.nav button{padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.nav button:hover{color:#B7EC5A}.hdr.light .nav button:hover{color:#5D9C14}
+.nav button.on{color:#8DCB3C;border-color:#8DCB3C}
+.cta{height:48px;padding:0 32px;border-radius:999px;background:#fff;color:var(--ink);font-weight:700;font-size:15px;transition:transform .15s}
+.hdr.light .cta{background:var(--lime);color:#fff;border-radius:6px}
+.cta:hover{transform:translateY(-1px)}
+/* hero */
+.hero{height:672px;background:#0b1a10 url(img/hero.webp) center/cover;position:relative;overflow:hidden}
+.glass{position:absolute;left:48px;right:48px;top:152px;height:510px;border-radius:30px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-align:center;color:#fff;padding-top:56px}
+.glass h1{font-size:50px;font-weight:800;margin:0;letter-spacing:.01em}
+.glass p{font-size:34px;font-weight:300;margin:14px 0 0}
+.hbtns{display:flex;gap:30px;justify-content:center;margin-top:70px}
+.hbtns button{width:296px;height:56px;border-radius:999px;font-weight:700;font-size:16px;transition:transform .15s,box-shadow .2s}
+.hbtns .dk{background:rgba(30,50,36,.75);border:1px solid rgba(255,255,255,.25);color:#fff}
+.hbtns .lt{background:#86C440;color:#fff}
+.hbtns button:hover{transform:translateY(-2px);box-shadow:0 12px 24px -10px rgba(0,0,0,.5)}
+.partners{display:flex;gap:56px;justify-content:center;margin-top:110px;opacity:.75;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.partners span{border:1px solid rgba(255,255,255,.45);padding:10px 14px;border-radius:6px}
+/* image sections with hotspots */
+.sec-img{position:relative}
+.hot{position:absolute;border-radius:8px;cursor:pointer;transition:box-shadow .2s,background .2s}
+.hot:hover{background:rgba(152,217,27,.12);box-shadow:0 0 0 2px #98D91B}
+/* map */
+.map{padding:96px 0 120px;text-align:center}
+.map h2{font-size:34px;font-weight:800;margin:0}
+.map .sub{font-size:20px;color:var(--muted);margin:12px 0 0}
+.mapgrid{display:grid;grid-template-columns:626px 1fr;gap:60px;padding:72px 64px 0;text-align:left;align-items:center}
+.rcard{border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 0 0 4px #EDE9FB,0 24px 60px -20px rgba(80,60,170,.25);transition:transform .25s}
+.rcard .ph{height:300px;background:url(img/card.webp) center/cover;position:relative}
+.badge{position:absolute;right:20px;top:20px;background:#5A44C9;color:#fff;font-size:13px;font-weight:700;border-radius:999px;padding:12px 24px}
+.rcard .bd{padding:30px 50px 40px}
+.co2{font-size:18px;color:var(--muted)}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.rhead h3{font-size:24px;margin:0;font-weight:800}
+.support{height:48px;padding:0 30px;border:1.5px solid #0E2A0C;border-radius:6px;font-weight:700}
+.support:hover{background:#0E2A0C;color:#fff}
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:42px;margin-top:40px}
+.bar .lbl{display:flex;justify-content:space-between;font-size:16px}
+.bar .lbl b{font-weight:700}
+.bar .tr{height:10px;border-radius:8px;background:#E8E8E8;margin-top:22px;overflow:hidden}
+.bar .tr i{display:block;height:100%;border-radius:8px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.g{color:#7CB82F}.g i{background:var(--lime)}.b{color:#3DA2EA}.b i{background:var(--blue)}
+.progs h4{font-size:24px;font-weight:800;margin:40px 0 14px;color:#2A0A1E}
+.progs li{display:flex;justify-content:space-between;font-size:17px;margin:12px 0 0 8px}
+.progs ul{list-style:none;padding:0;margin:0}.progs li span::before{content:"•";margin-right:12px}
+.progs li b{font-weight:800}
+svg.am{width:100%;height:auto;overflow:visible}
+svg.am path{stroke:#1E3F32;stroke-width:1;transition:fill .25s,filter .25s,opacity .25s;vector-effect:non-scaling-stroke}
+svg.am .off{fill:#fff;opacity:.55;stroke:#8C9A92}
+svg.am .on{fill:var(--lime);cursor:pointer}
+svg.am .on:hover{fill:#B9EE57}
+svg.am .sel,svg.am .sel:hover{fill:var(--lime2);stroke:#fff;stroke-width:2;filter:drop-shadow(0 0 14px rgba(30,63,50,.35))}
+.tip{position:absolute;pointer-events:none;background:#0E2A0C;color:#fff;font-size:13px;padding:7px 12px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-140%);opacity:0;transition:opacity .15s}
+.maparea{position:relative}
+.hint{font-size:14px;color:var(--muted);margin-top:18px;text-align:center}
+/* pricing */
+.join{padding:110px 64px 120px}
+.join h2{font-size:34px;font-weight:800;margin:0 0 72px}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pc{border-radius:20px;min-height:684px;position:relative;display:flex;flex-direction:column;padding:40px 32px 40px}
+.pc.promo{background:var(--lime);color:#fff;overflow:hidden;padding:52px 32px}
+.pc.promo h3{font-size:32px;margin:0;font-weight:800}
+.pc.promo p{font-size:20px;line-height:1.6;margin:30px 0 0}
+.tiles{position:absolute;left:0;bottom:0;display:grid;grid-template-columns:repeat(5,85px);grid-template-rows:repeat(3,85px)}
+.tiles i{background:transparent}.tiles i.l{background:#D3F08B}.tiles i.p{background:#F29BC4;display:flex;align-items:center;justify-content:center}
+.pc.tree{border:2px solid #9BDC2C}.pc.forest{border:2px solid var(--blue)}
+.pc .t{display:flex;align-items:center;gap:20px;font-size:32px;font-weight:800}
+.pc .q{color:#8A948E;font-size:20px;margin:40px 0 30px}
+.pc ul{list-style:none;padding:0;margin:0}
+.pc li{display:flex;gap:12px;align-items:flex-start;font-size:17px;margin-bottom:20px;line-height:1.5}
+.pc li svg{flex:none;margin-top:2px}
+.pc .price{margin-top:auto;border-top:2px dashed #D9EBC4;padding-top:30px;font-size:44px;font-weight:800}
+.pc.forest .price{border-color:#CDE6F8}
+.pc .price sup{font-size:16px;font-weight:700}
+.qty{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--muted);margin-top:14px}
+.qty button{width:32px;height:32px;border-radius:50%;border:1.5px solid #CFD8C9;font-weight:700;font-size:18px;line-height:1}
+.qty button:hover{border-color:var(--lime)}
+.qty b{min-width:26px;text-align:center;color:var(--ink);font-size:17px}
+.pick{height:56px;border-radius:8px;font-weight:700;font-size:17px;color:#fff;margin-top:28px;transition:filter .2s,transform .15s}
+.pc.tree .pick{background:var(--lime)}.pc.forest .pick{background:var(--blue)}
+.pick:hover{filter:brightness(1.05);transform:translateY(-1px)}
+/* faq */
+.faq{padding:0 130px 76px}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;align-items:center;gap:34px;padding:42px 32px;text-align:left;font-size:24px;font-weight:700}
+.qa .n{color:#B5B5B5;font-size:34px;font-weight:800;width:44px}
+.qa .pl{margin-left:auto;width:40px;height:40px;border-radius:50%;background:#F2F3F2;display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .3s,background .2s}
+.qa.open .pl{transform:rotate(45deg);background:var(--lime);color:#fff}
+.qa .a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.qa .a p{margin:0;padding:0 110px 36px 110px;font-size:18px;line-height:1.7;color:var(--muted)}
+.ftr{display:block;width:1440px}
+.page{display:none}.page.on{display:block}
+.fade{animation:fd .35s ease}@keyframes fd{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.toast{position:fixed;left:50%;top:110px;transform:translateX(-50%);background:#0E2A0C;color:#fff;border-radius:8px;padding:12px 18px;font-size:15px;z-index:50;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <!-- HOME -->
+  <section class="page on" id="home">
+    <div class="hero">
+      <header class="hdr">
+        <div class="logo" data-go="home"><b>tree</b><span>me</span></div>
+        <nav class="nav">
+          <button data-go="about">Մեր մասին</button><button data-go="resources">Օգտակար նյութեր</button><button data-go="subscribe">Բաժանորդագրություն</button><button data-go="faq">Հաճախ Տրվող Հարցեր</button>
+        </nav>
+        <button class="cta" data-go="plant">Տնկել Ծառ</button>
+      </header>
+      <div class="glass">
+        <h1>Կանաչապատիր Հայաստանը</h1>
+        <p>մեկ հպումով և հետևիր ամբողջ ընթացքին առցանց</p>
+        <div class="hbtns"><button class="dk" data-go="plant">Կորպորատիվ Փաթեթ</button><button class="lt" data-go="subscribe">Անհատների Համար</button></div>
+        <div class="partners"><span>Treeme</span><span>SoulMe</span><span>Ministry of Environment</span></div>
+      </div>
+    </div>
+    <div class="sec-img" style="margin-top:120px"><img src="img/banner.webp" width="1440" height="428" alt="Why every planted tree matters: a personal certificate with a QR code, five years of care and the Paris agreement goals"></div>
+
+    <section class="map" id="map">
+      <h2>Հայաստանի կանաչ ապագան</h2>
+      <p class="sub">Հայաստանի գրեթե բոլոր մարզերում հասանելի են ծառատնկման տարածքներ</p>
+      <div class="mapgrid">
+        <article class="rcard" id="rcard">
+          <div class="ph"><span class="badge" id="rbadge">Ակտիվ ծառատունկ</span></div>
+          <div class="bd">
+            <div class="co2" id="rco2">CO₂: 380կգ</div>
+            <div class="rhead"><h3 id="rname">Գեղարքունիքի մարզ</h3><button class="support" data-go="subscribe">Աջակցել</button></div>
+            <div class="bars">
+              <div class="bar g"><div class="lbl"><span>Բնապահպանական</span><b id="renv">86%</b></div><div class="tr"><i id="renvb" style="width:86%"></i></div></div>
+              <div class="bar b"><div class="lbl"><span>Սոցիալական</span><b id="rsoc">82%</b></div><div class="tr"><i id="rsocb" style="width:82%"></i></div></div>
+            </div>
+            <div class="progs"><h4>Ակտիվ ծրագրեր</h4><ul id="rprogs"></ul></div>
+          </div>
+        </article>
+        <div class="maparea">
+          <svg class="am" viewBox="0 0 627 628" role="img" aria-label="Map of Armenia: choose a region">
+            <g id="regions"></g>
+          </svg>
+          <div class="tip" id="tip"></div>
+          <p class="hint">Ընտրեք մարզը քարտեզի վրա</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="sec-img"><img src="img/support.webp" width="1440" height="409" alt="Treeme supports Armenia's goal to raise forest cover to 20.1% by 2050"></div>
+    <div class="sec-img" style="margin-top:120px"><img src="img/cert.webp" width="1440" height="700" alt="The certificate and four promises: reliable partners, certificate, accountability and transparency"></div>
+    <div class="sec-img" style="margin-top:120px">
+      <img src="img/projects.webp" width="1440" height="880" alt="Planting programs with goal, planted trees and CO2 absorbed">
+      <a class="hot" data-go="projects" style="left:1198px;top:48px;width:178px;height:48px" aria-label="See all programs"></a>
+      <a class="hot" data-go="plant" style="left:464px;top:392px;width:224px;height:48px" aria-label="Join the program"></a>
+      <a class="hot" data-go="plant" style="left:1128px;top:392px;width:224px;height:48px" aria-label="Join the program"></a>
+      <a class="hot" data-go="plant" style="left:464px;top:712px;width:224px;height:48px" aria-label="Join the program"></a>
+      <a class="hot" data-go="projects" style="left:1174px;top:712px;width:178px;height:48px" aria-label="See more"></a>
+    </div>
+    <div class="sec-img" style="margin-top:120px">
+      <img src="img/species.webp" width="1440" height="745" alt="Native tree species of Armenia: beech, spruce and ash">
+      <a class="hot" data-go="species" style="left:1198px;top:40px;width:178px;height:48px" aria-label="See all species"></a>
+    </div>
+
+    <section class="join">
+      <h2>Դարձիր Հայաստանի կանաչ ապագայի մասնակիցը</h2>
+      <div class="prices">
+        <div class="pc promo"><h3>Մեկ հպում Մեկ ծառ</h3><p>Տնկված յուրաքանչյուր ծառ խնամվում է 5 տարի, ապահովվում նրա առողջ աճն ու զարգացումը</p>
+          <div class="tiles"><i class="l"></i><i></i><i></i><i></i><i></i><i></i><i class="l"></i><i class="l"></i><i></i><i class="p"><svg width="40" height="30" viewBox="0 0 40 30"><path d="M2 15h28M20 4l14 11-14 11" fill="#5C0A35" stroke="#5C0A35" stroke-width="5"/></svg></i><i></i><i class="l"></i><i></i><i class="l"></i><i class="l"></i></div></div>
+        <div class="pc tree">
+          <div class="t"><svg width="40" height="44" viewBox="0 0 40 44"><path d="M20 2 6 16h8L4 26h10L2 36h36L26 26h10L26 16h8z" fill="#9BDC2C"/><rect x="17" y="34" width="6" height="10" fill="#9BDC2C"/></svg>Տնկել ծառ</div>
+          <div class="q">Ի՞նչ կստանաք՝</div>
+          <ul><li>${c}Հավաստագիր</li><li>${c}5 տարվա ծառի խնամքի երաշխիք</li><li>${c}Ներդրում ՀՀ կանաչապատման ծրագրին</li></ul>
+          <div class="price"><span id="ptree">2100</span><sup>AMD</sup>
+            <div class="qty">Ծառերի քանակ <button data-q="-1" aria-label="Fewer trees">−</button><b id="qn">1</b><button data-q="1" aria-label="More trees">+</button></div></div>
+          <button class="pick" data-go="subscribe">Ընտրել</button>
+        </div>
+        <div class="pc forest">
+          <div class="t"><svg width="44" height="40" viewBox="0 0 44 40"><path d="M22 6c4 6 4 14 0 24-4-10-4-18 0-24zM4 10c8 0 14 6 16 18C10 28 4 22 4 10zm36 0c0 12-6 18-16 18 2-12 8-18 16-18z" fill="#4BAFF5"/></svg>Տնկել անտառ</div>
+          <div class="q">Ի՞նչ կստանաք՝</div>
+          <ul><li>${cb}Հավաստագիր</li><li>${cb}Չափելի արդյունքներ</li><li>${cb}Ձեր սեփական անտառը</li><li>${cb}Բրենդային նվերներ</li><li>${cb}Ներդրում ՀՀ կանաչապատման ծրագրին</li></ul>
+          <div class="price">30.000<sup>AMD</sup></div>
+          <button class="pick" data-go="plant">Ընտրել</button>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- SUBPAGES -->
+  <section class="page" id="about"><img src="img/p-about.webp" width="1440" height="1852" alt="About Treeme: values, 2024 report and a call to join"></section>
+  <section class="page" id="resources"><img src="img/p-resources.webp" width="1440" height="2044" alt="Useful materials: articles about Armenia's forests"></section>
+  <section class="page" id="subscribe"><img src="img/p-subscribe.webp" width="1440" height="1078" alt="Subscription plans for individuals"></section>
+  <section class="page" id="plant"><img src="img/p-plant.webp" width="1440" height="1402" alt="Planting packages for companies"></section>
+  <section class="page" id="faq"><img src="img/p-faq.webp" width="1440" height="352" alt="Questions and answers"></section>
+  <section class="page" id="species"><img src="img/p-species.webp" width="1440" height="1612" alt="Tree species"></section>
+  <section class="page" id="projects"><img src="img/p-projects.webp" width="1440" height="1488" alt="Planting programs: all, active and finished"></section>
+
+  <section class="faq" id="faqbox"></section>
+  <img class="ftr" src="img/footer.webp" width="1440" height="323" alt="Treeme footer with contacts">
+</div>
+<div class="toast" id="toast"></div>
+<script>
+(function(){
+var CHK='<svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="11" fill="#7FC23A"/><path d="m6.5 11 3 3 6-6" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>';
+var CHKB=CHK.replace('#7FC23A','#3DA2EA');
+document.querySelectorAll('.pc li').forEach(function(li){li.innerHTML=li.innerHTML.replace('${c}',CHK).replace('${cb}',CHKB)});
+
+/* region polygons exported from the Figma map, simplified */
+var P={
+ shirak:"M39 229L35 225L25 213L30 207L37 201L41 197L45 189L50 182L54 177L52 172L58 154L57 144L50 126L46 117L44 110L36 89L14 74L4 68L1 52L4 49L11 47L31 45L40 46L49 47L59 48L68 46L74 41L79 37L84 35L93 34L103 34L107 34L106 40L105 48L106 56L111 59L118 65L124 73L127 76L125 80L125 86L131 87L137 87L135 97L131 104L122 107L118 112L115 119L117 127L120 134L125 136L132 140L140 145L144 145L140 152L132 163L127 169L130 172L136 181L137 185L143 185L149 185L148 193L146 200L151 204L142 210L130 216L121 220L116 214L113 210L109 209L102 212L96 214L85 211L80 209L75 207L67 209L58 213L53 218L48 224L43 228L39 229Z",
+ lori:"M250 164L237 160L225 157L219 157L204 157L194 156L188 150L177 145L171 143L167 146L161 150L157 151L153 147L148 143L141 144L132 140L125 136L120 134L117 127L115 119L118 112L122 107L131 104L133 100L137 87L131 87L125 86L125 80L127 76L124 73L118 65L111 59L106 56L105 48L106 40L107 36L111 32L117 30L130 30L142 26L145 20L149 16L162 23L176 23L187 23L191 25L196 28L203 28L209 25L216 25L220 29L227 23L231 19L237 18L241 20L263 22L279 22L287 19L291 21L296 26L289 33L287 40L292 50L297 54L296 60L293 63L288 67L277 69L272 69L267 74L268 83L280 89L285 90L288 93L291 100L284 108L280 121L276 127L272 128L263 132L261 136L262 141L264 145L266 156L265 164L250 164Z",
+ tavush:"M307 171L301 167L295 163L271 168L265 164L266 156L264 145L262 139L263 132L272 128L276 127L280 121L284 108L291 100L288 93L285 90L280 89L268 83L267 74L272 69L277 69L288 67L293 63L296 60L299 57L292 50L287 40L289 33L296 26L289 20L284 18L276 13L272 8L277 5L287 7L300 7L307 3L315 9L317 18L318 24L328 26L336 26L341 30L350 40L347 45L344 48L334 48L324 47L322 53L323 57L330 63L334 59L341 61L346 65L350 69L354 72L360 73L366 75L383 75L393 73L393 83L394 87L398 90L409 99L422 110L429 113L426 128L423 132L418 136L395 148L386 157L384 165L379 164L370 158L364 152L360 148L353 147L346 146L340 150L333 154L326 161L323 167L307 171ZM409 179L404 172L408 166L418 166L420 171L412 180Z",
+ kotayk:"M245 312L242 307L238 302L231 301L228 296L234 287L232 281L227 277L220 279L209 281L198 282L194 278L193 274L198 267L193 259L203 250L210 239L213 236L212 232L216 213L221 194L222 189L215 187L201 179L196 176L196 170L196 162L203 158L219 157L223 159L237 160L258 165L268 166L270 170L269 175L268 180L269 185L270 196L275 199L282 202L284 210L287 220L293 229L295 236L296 240L298 248L301 258L302 263L303 278L315 293L309 294L294 297L269 308L250 314L245 312Z",
+ gegharkunik:"M332 369L330 362L329 355L328 348L326 341L319 330L315 320L314 311L316 301L316 293L312 289L305 280L301 265L301 258L298 248L296 240L295 236L293 229L289 222L284 210L282 202L275 199L270 196L269 185L268 180L269 175L270 171L270 168L274 167L292 163L295 163L301 167L309 171L323 167L326 161L333 154L340 150L346 146L353 147L360 148L364 152L370 158L384 169L385 173L392 182L400 196L400 200L404 203L411 214L421 227L446 244L451 247L460 252L469 257L472 259L477 264L482 269L490 268L494 268L502 275L504 278L504 286L503 293L499 304L497 307L493 313L489 323L484 333L470 335L456 332L448 331L441 330L431 333L424 338L419 336L414 341L389 351L373 352L359 352L348 359L333 370Z",
+ syunik:"M471 375L477 381L481 385L487 389L496 393L501 394L506 396L513 407L515 411L517 415L520 418L524 420L529 423L534 424L537 428L541 434L545 439L552 441L563 437L569 434L573 433L578 435L582 439L587 444L595 445L604 444L608 445L613 452L612 458L608 461L607 468L606 473L597 476L588 478L582 484L581 488L582 492L584 496L589 500L593 502L602 506L607 510L609 515L613 522L618 527L622 530L625 533L626 537L619 541L615 545L610 546L605 544L595 539L590 540L588 545L588 550L591 553L596 557L602 561L605 564L606 571L606 588L604 599L605 607L605 611L607 615L609 621L604 621L600 619L596 617L588 613L583 611L573 614L569 614L564 617L557 621L552 625L544 626L536 627L533 623L530 617L528 613L525 607L523 602L521 596L519 591L511 571L507 565L499 549L502 537L505 532L505 528L496 521L487 517L484 514L478 509L470 504L465 503L461 497L462 492L467 483L468 475L468 462L467 454L464 450L454 447L450 446L450 440L452 431L455 419L456 413L454 408L451 403L453 399L460 388L465 380L468 376Z",
+ aragatsotn:"M198 296L197 292L195 288L190 286L182 284L168 275L159 276L154 279L151 276L146 274L145 280L145 284L128 289L115 289L108 283L102 279L90 272L84 270L78 266L74 263L71 266L65 268L59 268L54 272L51 275L36 253L32 246L35 239L36 233L41 230L48 224L53 218L58 213L67 209L72 206L80 209L85 211L96 214L101 214L109 209L113 210L116 214L121 220L130 216L142 210L148 206L149 202L148 193L149 185L143 185L137 185L136 181L130 172L127 169L132 163L141 150L146 144L154 147L157 151L161 150L167 146L171 143L176 145L188 150L194 156L196 160L196 170L196 176L201 179L215 187L220 189L221 194L216 213L211 229L213 236L210 239L203 250L196 258L198 267L194 273L194 278L197 283L196 287L198 293Z",
+ armavir:"M117 333L102 331L74 318L70 317L62 314L46 307L44 303L44 299L50 297L52 286L48 279L53 273L59 269L65 268L71 266L74 263L78 266L84 270L90 272L102 279L108 283L112 287L128 289L145 284L145 280L146 274L151 276L154 279L159 276L168 275L182 284L190 286L195 288L197 292L199 297L193 301L182 315L184 319L187 327L187 332L179 329L175 326L157 326L153 327L142 329L138 330L133 326L125 330L117 333Z",
+ yerevan:"M220 320L218 316L211 312L206 310L205 303L201 296L198 292L196 287L197 283L209 281L220 279L227 277L232 281L236 286L228 296L228 300L235 301L239 303L242 306L235 312L226 321L220 320Z",
+ ararat:"M264 410L259 402L251 393L246 388L237 383L232 379L227 371L224 366L217 355L200 341L196 338L190 335L187 331L187 327L184 319L182 315L195 301L199 297L205 303L205 309L211 312L218 316L225 321L235 312L240 307L244 310L246 314L269 308L294 297L309 294L315 293L316 301L314 311L315 320L319 330L326 341L328 348L329 355L330 362L332 369L338 366L343 364L337 367L330 374L326 393L326 401L320 396L314 396L309 399L302 403L284 408L268 411L264 410Z",
+ vayots:"M394 466L390 462L380 457L369 451L365 444L362 440L354 443L346 447L340 443L341 434L341 428L335 412L328 404L326 392L330 374L336 368L346 361L359 352L373 352L389 351L414 341L419 336L425 342L430 346L446 348L459 353L466 365L471 375L465 379L460 388L453 399L451 403L454 408L457 413L455 419L452 431L451 445L444 448L435 451L429 452L425 454L416 459L394 466Z"
+};
+var R={
+ gegharkunik:{n:'Գեղարքունիքի մարզ',co2:380,e:86,s:82,b:'Ակտիվ ծառատունկ',p:[['Գեղարքունիքի կանաչապատում',89],['Վարդենիս անտառներ',85]]},
+ tavush:{n:'Տավուշի մարզ',co2:700,e:79,s:86,b:'Ակտիվ ծառատունկ',p:[['Գրաբի (Fagus orientalis) անտառներ',96],['Վերատնկում Դիլիջանում',87]]},
+ lori:{n:'Լոռիի մարզ',co2:610,e:89,s:83,b:'3 ծրագիր',p:[['Եղևնի անտառների վերականգնում',91],['Խառը փշատերև անտառներ',84]]},
+ syunik:{n:'Սյունիքի մարզ',co2:540,e:98,s:94,b:'Ակտիվ ծառատունկ',p:[['Կաղնու պուրակներ',90],['Կենսաբազմազանության միջանցքներ',86]]},
+ kotayk:{n:'Կոտայքի մարզ',co2:450,e:73,s:81,b:'Ակտիվ ծառատունկ',p:[['Սոճու պաշտպանիչ գոտիներ',88],['Հողերի էրոզիայի կանխարգելում',82]]},
+ shirak:{n:'Շիրակի մարզ',co2:390,e:85,s:80,b:'Ակտիվ ծառատունկ',p:[['Բարձրավանդակային սոճու պուրակներ',88],['Հողերի էրոզիայի կանխարգելում',82]]}
+};
+var OFF={aragatsotn:'Արագածոտն',armavir:'Արմավիր',yerevan:'Երևան',ararat:'Արարատ',vayots:'Վայոց ձոր'};
+var g=document.getElementById('regions'),tip=document.getElementById('tip'),area=document.querySelector('.maparea');
+var order=['aragatsotn','armavir','yerevan','ararat','vayots','shirak','lori','tavush','kotayk','syunik','gegharkunik'];
+order.forEach(function(k){var p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',P[k]);p.dataset.k=k;p.setAttribute('class',R[k]?'on':'off');if(R[k]){p.setAttribute('tabindex','0');p.setAttribute('role','button');p.setAttribute('aria-label',R[k].n);}g.appendChild(p);});
+function pick(k){var r=R[k];if(!r)return;g.querySelectorAll('path').forEach(function(p){p.classList.toggle('sel',p.dataset.k===k)});var sel=g.querySelector('[data-k="'+k+'"]');g.appendChild(sel);
+ document.getElementById('rname').textContent=r.n;document.getElementById('rco2').textContent='CO₂: '+r.co2+'կգ';document.getElementById('rbadge').textContent=r.b;
+ document.getElementById('renv').textContent=r.e+'%';document.getElementById('rsoc').textContent=r.s+'%';
+ var eb=document.getElementById('renvb'),sb=document.getElementById('rsocb');eb.style.width='0';sb.style.width='0';requestAnimationFrame(function(){requestAnimationFrame(function(){eb.style.width=r.e+'%';sb.style.width=r.s+'%'})});
+ document.getElementById('rprogs').innerHTML=r.p.map(function(x){return'<li><span>'+x[0]+'</span><b>'+x[1]+'%</b></li>'}).join('');
+ var c=document.getElementById('rcard');c.classList.remove('fade');void c.offsetWidth;c.classList.add('fade');}
+g.addEventListener('click',function(e){var k=e.target.dataset&&e.target.dataset.k;if(R[k])pick(k);else if(k)toast(OFF[k]+'․ ծրագրերը շուտով');});
+g.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.dataset.k){e.preventDefault();pick(e.target.dataset.k)}});
+g.addEventListener('mousemove',function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k){tip.style.opacity=0;return}var b=area.getBoundingClientRect();tip.textContent=R[k]?R[k].n:OFF[k];tip.style.left=(e.clientX-b.left)+'px';tip.style.top=(e.clientY-b.top)+'px';tip.style.opacity=1;});
+g.addEventListener('mouseleave',function(){tip.style.opacity=0});
+pick('gegharkunik');
+
+/* tree counter */
+var q=1;document.querySelectorAll('[data-q]').forEach(function(b){b.addEventListener('click',function(){q=Math.max(1,Math.min(50,q+ +b.dataset.q));document.getElementById('qn').textContent=q;document.getElementById('ptree').textContent=(q*2100).toLocaleString('en-US').replace(/,/g,'.')})});
+
+/* faq */
+var FAQ=[['Ինպե՞ս տնկել ծառ Treeme հարթակով:','Treeme.am–ի միջոցով ծառ տնկելը ոչ միայն հեշտ է, այլև իրական հնարավորություն է Ձեր անունից անմիջական ներդրում ունենալու Հայաստանի կանաչապատման կարևորագույն գործում։ Դուք կարող եք ընդամենը մի քանի րոպեում տնկել ծառ Հայաստանում, ձեր նախընտրելի մարզում և ստանալ հավաստագիր ՀՀ Շրջակա միջավայրի նախարարության կողմից։'],
+['Ինչու՞ ընտրել Treeme.am հարթակը:','Treeme.am-ն առաջարկում է ամբողջական թափանցիկություն և հետագծելիություն։ Յուրաքանչյուր տնկված ծառ ունի իր եզակի QR կոդը, որի միջոցով դուք կարող եք տեսնել իրական լուսանկարները, աճի ցուցանիշները և գտնվելու վայրը։ Բացի այդ, մենք 5 տարվա երաշխիք ենք տալիս ծառի խնամքի համար։'],
+['Ինչպե՞ս ենք ապահովում թափանցիկությունը:','Յուրաքանչյուր տնկված ծառ ստանում է եզակի QR կոդ, որի միջոցով կարող եք հետևել նրա աճին ռեալ ժամանակում: Մենք կիսվում ենք GPS կոորդինատներով, լուսանկարներով և աճի չափումներով:'],
+['Ո՞ր մարզերում են հասանելի ծառատնկման ծրագրերը:','Մեր ծառատնկման ծրագրերը գործում են Հայաստանի գրեթե բոլոր մարզերում՝ ներառյալ Գեղարքունիքի, Լոռու, Շիրակի, Կոտայքի և այլ մարզեր։ Յուրաքանչյուր մարզ ունի իր հատուկ էկոհամակարգը, և մենք ընտրում ենք այն ծառատեսակները, որոնք ամենաապա են համապատասխան կլիմայական պայմանների համար։'],
+['Ինչպե՞ս կարող եմ հետևել իմ ծառի աճին:','Յուրաքանչյուր ծառ ունի իր եզակի QR կոդը, որը տրվում է հավաստագրի վրա։ Այս կոդը սկանավորելով՝ դուք կարող եք մուտք գործել ծառի անձնական էջ, որտեղ կտեսնեք ընթացիկ լուսանկարները, աճի չափումները, խնամքի մանրամասները և GPS կոորդինատները։ Մենք կանոնավոր թարմացումներ ենք ուղարկում ծառի վիճակի մասին։']];
+var fb=document.getElementById('faqbox');
+fb.innerHTML=FAQ.map(function(x,i){return'<div class="qa"><button aria-expanded="false"><span class="n">0'+(i+1)+'</span><span>'+x[0]+'</span><span class="pl" aria-hidden="true">+</span></button><div class="a"><p>'+x[1]+'</p></div></div>'}).join('');
+fb.addEventListener('click',function(e){var b=e.target.closest('.qa button');if(!b)return;var qa=b.parentNode,a=qa.querySelector('.a'),open=!qa.classList.contains('open');
+ fb.querySelectorAll('.qa.open').forEach(function(o){o.classList.remove('open');o.querySelector('.a').style.maxHeight='0';o.querySelector('button').setAttribute('aria-expanded','false')});
+ if(open){qa.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';b.setAttribute('aria-expanded','true')}});
+
+/* pages */
+var light=document.createElement('header');light.className='hdr light';light.innerHTML=document.querySelector('.hdr').innerHTML;
+var app=document.getElementById('app');app.insertBefore(light,app.firstChild);light.style.display='none';
+function go(id){document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('on',p.id===id)});
+ light.style.display=id==='home'?'none':'flex';
+ document.querySelectorAll('.nav button').forEach(function(b){b.classList.toggle('on',b.dataset.go===id)});
+ var pg=document.getElementById(id);pg.classList.remove('fade');void pg.offsetWidth;pg.classList.add('fade');window.scrollTo(0,0);
+ try{history.replaceState(null,'','#'+id)}catch(e){}}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-go]');if(!t)return;e.preventDefault();go(t.dataset.go)});
+var tt;function toast(s){var t=document.getElementById('toast');t.textContent=s;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},1800)}
+var h=(location.hash||'').slice(1);if(h&&document.getElementById(h)&&document.getElementById(h).classList.contains('page'))go(h);
+})();
+</script>
+<script>(function(){if(window.top!==window.self)return;var ru=false;try{ru=localStorage.getItem('lg-lang')==='ru'}catch(e){}var a=document.createElement('a');a.id='lg-back';a.href='/case-treeme/';a.setAttribute('aria-label',ru?'Назад к кейсу':'Back to the case study');a.innerHTML='<span class="i" aria-hidden="true">←</span><span class="t">'+(ru?'Назад к кейсу':'Back to the case study')+'</span>';var st=document.createElement('style');st.textContent='#lg-back{position:fixed;left:16px;bottom:16px;z-index:2147483647;display:inline-flex;align-items:center;height:40px;min-width:40px;padding:0 12px;border-radius:999px;background:#141414;color:#fff;font:600 13px/1 system-ui,-apple-system,Segoe UI,sans-serif;text-decoration:none;box-shadow:0 10px 24px -10px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.1) inset;transition:background .2s}#lg-back .i{font-size:16px;width:16px;text-align:center}#lg-back .t{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:max-width .3s,opacity .2s,margin .3s}#lg-back:hover,#lg-back:focus-visible{background:#35822A}#lg-back:hover .t,#lg-back:focus-visible .t,#lg-back.peek .t{max-width:200px;opacity:1;margin-left:8px}';document.head.appendChild(st);document.body.appendChild(a);a.classList.add('peek');setTimeout(function(){a.classList.remove('peek')},3500);})();</script>
+</body>
+</html>
