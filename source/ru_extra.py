@@ -731,3 +731,9 @@ RU.update({
 "From six tabs to three groups": "От шести вкладок к трём группам",
 "The dropped top bar on the left, the admin sidebar on the right.": "Слева — верхняя панель, от которой я отказалась, справа — боковое меню для администраторов."
 })
+
+RU.update({
+"Visit the live site": "Открыть сайт",
+"Live": "Онлайн",
+"Live today. The client may have changed it since my design.": "Сайт работает. Клиент мог изменить его после моего дизайна."
+})
