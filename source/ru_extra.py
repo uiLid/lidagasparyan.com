@@ -783,3 +783,11 @@ RU.update({
 "Behind the site I designed two admin panels in the same visual language: one for the Treeme team to run programs, orders and certificates, and one for Hay Antar, the state forest agency, to receive planting orders by region.": "За сайтом я спроектировала две админ-панели в том же визуальном языке: одну для команды Treeme, чтобы вести программы, заказы и сертификаты, и одну для «Հայանտառ», государственной лесной службы, чтобы получать заказы на посадку по регионам.",
 "Admin panel screens are not shown here yet.": "Экраны админ-панелей пока не показаны."
 })
+
+RU.update({
+"Business strategy": "Бизнес-стратегия",
+"As Product Director I wrote the 2025 strategy, Road to Market Leadership: the vision, mission, values and brand principles, and an honest SWOT of where Treeme stood.": "Как директор по продукту я написала стратегию на 2025 год «Путь к лидерству на рынке»: видение, миссию, ценности и принципы бренда, а также честный SWOT того, где был Treeme.",
+"The strengths were trust: support from the Ministry of Environment, GPS coordinates for every tree, five years of care and planting by Hay Antar. The weaknesses were no social media, no clear brand, no CRM and no clear return for companies. Those weaknesses became the work plan, and I built the CRM and the sales roadmap next.": "Сильные стороны были про доверие: поддержка Министерства окружающей среды, GPS-координаты каждого дерева, пять лет ухода и посадка силами «Հայանտառ». Слабые: нет соцсетей, нет ясного бренда, нет CRM и непонятная отдача для компаний. Эти слабые стороны стали планом работ, и следующим шагом я построила CRM и план продаж.",
+"Slides from the strategy deck": "Слайды из стратегии",
+"The cover, the vision, values, brand principles, strengths and weaknesses. The deck is in Armenian.": "Обложка, видение, ценности, принципы бренда, сильные и слабые стороны. Презентация на армянском."
+})

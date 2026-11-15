@@ -17,6 +17,7 @@ img{display:block;max-width:100%}
 .wrap{width:1440px;margin:0 auto;position:relative}
 /* header */
 .hdr{position:absolute;left:48px;right:48px;top:16px;height:80px;z-index:20;display:flex;align-items:center;padding:0 16px 0 32px;border-radius:40px;border:1px solid rgba(255,255,255,.14);background:rgba(20,40,28,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff}
+.hdr.light.float{position:fixed;left:50%;top:0;transform:translate(-50%,-110%);transition:transform .3s ease;box-shadow:0 8px 24px -16px rgba(0,0,0,.25)}.hdr.light.float.show{transform:translate(-50%,0)}
 .hdr.light{position:sticky;top:0;left:auto;right:auto;margin:0 auto;width:1440px;border-radius:0;border:0;border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);color:var(--ink);padding:0 120px;height:96px}
 .logo{font-weight:700;font-size:30px;letter-spacing:-.04em;display:flex;align-items:baseline;cursor:pointer}.logo b{color:#8DCB3C;font-weight:700}.logo span{font-weight:500}
 .nav{display:flex;gap:40px;margin:0 auto;font-size:16px}
@@ -277,9 +278,11 @@ fb.addEventListener('click',function(e){var b=e.target.closest('.qa button');if(
 
 /* pages */
 var light=document.createElement('header');light.className='hdr light';light.innerHTML=document.querySelector('.hdr').innerHTML;
-var app=document.getElementById('app');app.insertBefore(light,app.firstChild);light.style.display='none';
-function go(id){document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('on',p.id===id)});
- light.style.display=id==='home'?'none':'flex';
+var app=document.getElementById('app');app.insertBefore(light,app.firstChild);light.classList.add('float');
+var cur='home',lastY=0;
+window.addEventListener('scroll',function(){var y=window.scrollY;if(cur==='home'){light.classList.toggle('show',y>560&&y<lastY);}lastY=y;},{passive:true});
+function go(id){cur=id;document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('on',p.id===id)});
+ light.style.display='flex';light.classList.toggle('float',id==='home');light.classList.remove('show');
  document.querySelectorAll('.nav button').forEach(function(b){b.classList.toggle('on',b.dataset.go===id)});
  var pg=document.getElementById(id);pg.classList.remove('fade');void pg.offsetWidth;pg.classList.add('fade');window.scrollTo(0,0);
  try{history.replaceState(null,'','#'+id)}catch(e){}}
