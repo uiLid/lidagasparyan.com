@@ -791,3 +791,5 @@ RU.update({
 "Slides from the strategy deck": "Слайды из стратегии",
 "The cover, the vision, values, brand principles, strengths and weaknesses. The deck is in Armenian.": "Обложка, видение, ценности, принципы бренда, сильные и слабые стороны. Презентация на армянском."
 })
+
+RU.update({"Mobile": "Мобильные", "Mobile app": "Мобильное приложение"})
