@@ -535,6 +535,13 @@ fieldset.field > legend + * { clear: both; }
 .live-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 18px; }
 .live-row .note { color: var(--muted); font-size: .85rem; }
 .tag.live::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 6px; vertical-align: middle; }
+
+/* hero art: interactive dot dashboard */
+.hero::before, .hero::after { display: none !important; }
+.hero-art { position: absolute; z-index: -1; right: -90px; top: -36px; width: min(46vw, 540px); height: 440px; pointer-events: none; }
+.hero-art canvas { width: 100%; height: 100%; display: block; }
+@media (max-width: 1080px) { .hero-art { opacity: .35; right: -120px; } }
+@media (max-width: 760px) { .hero-art { display: none; } }
 </style>
 
 <button class="skip" id="skip" type="button">Skip to content</button>
@@ -564,6 +571,7 @@ fieldset.field > legend + * { clear: both; }
 <!-- HOME -->
 <div data-route="home" class="page" tabindex="-1" aria-label="Home">
   <div class="hero">
+    <div class="hero-art" aria-hidden="true"><canvas></canvas></div>
     <p class="label">Senior Product Designer &middot; Yerevan, Armenia</p>
     <h1>I design the <span>dashboards</span>, account areas and onboarding behind web platforms.</h1>
     <p class="lead">Senior product designer with 9+ years of experience across hosting, e‑commerce and AI tools, and a former Product Director. Open to full-time remote or in-house roles.</p>
@@ -2523,4 +2531,79 @@ document.querySelectorAll("[data-sky-mode]").forEach(function(x){x.setAttribute(
 document.querySelectorAll(".sky-group").forEach(function(g){g.hidden=g.getAttribute("data-sky")!==m});});
 </script>
 
+<script>
+(function(){
+  var box=document.querySelector('.hero-art'); if(!box) return;
+  var cv=box.querySelector('canvas'), cx=cv.getContext('2d');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W=0,H=0,dpr=1,S=18,dots=[],cols=0,rows=0;
+  var m={x:-999,y:-999,in:false,sx:-999,sy:-999}, ripples=[], t0=performance.now(), raf=0, live=true;
+  function col(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()||'#888';}
+  var C={};
+  function colors(){C.acc=col('--accent-ink');C.dot=col('--muted');C.fg=col('--fg');C.bg=col('--bg');}
+  function size(){
+    var r=box.getBoundingClientRect(); dpr=Math.min(2,window.devicePixelRatio||1);
+    W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; cx.setTransform(dpr,0,0,dpr,0,0);
+    cols=Math.floor(W/S); rows=Math.floor(H/S); dots=[];
+    var ox=(W-(cols-1)*S)/2, oy=(H-(rows-1)*S)/2;
+    for(var j=0;j<rows;j++)for(var i=0;i<cols;i++)dots.push({i:i,j:j,bx:ox+i*S,by:oy+j*S,x:ox+i*S,y:oy+j*S});
+  }
+  function series(u,t){ // 0..1 -> 0..1, a slow living line chart
+    return .52+.16*Math.sin(u*5.2+t*.55)+.08*Math.sin(u*11.3-t*.9)+.05*Math.sin(u*2.1+t*.3)-.12*(u-.5);
+  }
+  function frame(now){
+    var t=(now-t0)/1000; cx.clearRect(0,0,W,H);
+    m.sx+= (m.x-m.sx)*.18; m.sy+=(m.y-m.sy)*.18;
+    var top=H*.18, ht=H*.64, hoverCol=-1;
+    if(m.in&&m.sx>0&&m.sx<W) hoverCol=Math.round((m.sx-(W-(cols-1)*S)/2)/S);
+    for(var k=0;k<dots.length;k++){
+      var d=dots[k], u=d.i/(cols-1);
+      var ly=top+(1-series(u,t))*ht;               // line height at this column
+      // cursor lens: push dots away, softly
+      var tx=d.bx, ty=d.by, dx=d.bx-m.sx, dy=d.by-m.sy, dist=Math.sqrt(dx*dx+dy*dy), R=120;
+      if(dist<R&&dist>0){var f=Math.pow(1-dist/R,2)*26; tx+=dx/dist*f; ty+=dy/dist*f;}
+      for(var r=0;r<ripples.length;r++){var rp=ripples[r],rd=Math.hypot(d.bx-rp.x,d.by-rp.y),w=(t-rp.t)*260;
+        var g=Math.exp(-Math.pow((rd-w)/22,2))*(1-(t-rp.t)/1.6); if(g>0){ty-=g*10;}}
+      d.x+=(tx-d.x)*.16; d.y+=(ty-d.y)*.16;
+      // radial fade so the field has no hard edges
+      var ex=(d.bx/W-.5)*2, ey=(d.by/H-.5)*2, edge=Math.max(0,1-Math.pow(ex*ex*.85+ey*ey,1.6))*Math.min(1,Math.max(0,(d.bx/W-.08)/.3));
+      if(edge<=0.02) continue;
+      var onLine=Math.abs(d.by-ly)<S*.55, below=d.by>ly, near=dist<R?1-dist/R:0, inCol=d.i===hoverCol;
+      var rad=1.15, a=.32*edge, c=C.dot;
+      if(below){var dep=Math.min(1,(d.by-ly)/(H*.45)); a=(.85-.65*dep)*edge; c=C.acc; rad=1.6-.5*dep;}
+      if(onLine){a=edge; c=C.acc; rad=2.4;}
+      if(inCol){a=Math.max(a,.7*edge); rad+=.5;}
+      rad+=near*1.4;
+      cx.globalAlpha=Math.min(1,a+near*.4); cx.fillStyle=c;
+      cx.beginPath(); cx.arc(d.x,d.y,rad,0,6.283); cx.fill();
+    }
+    // hover readout, like a chart tooltip
+    if(hoverCol>=0&&hoverCol<cols){
+      var u=hoverCol/(cols-1), y=top+(1-series(u,t))*ht, x=(W-(cols-1)*S)/2+hoverCol*S;
+      cx.globalAlpha=1; cx.fillStyle=C.bg; cx.strokeStyle=C.acc; cx.lineWidth=2;
+      cx.beginPath(); cx.arc(x,y,6,0,6.283); cx.fill(); cx.stroke();
+      var label=String(Math.round(series(u,t)*100)), pw=cx.measureText(label).width+18;
+      cx.font='600 12px ui-monospace,SFMono-Regular,Menlo,monospace';
+      pw=cx.measureText(label).width+18;
+      var px=Math.min(W-pw-4,Math.max(4,x-pw/2)), py=y-34;
+      cx.fillStyle=C.fg; roundRect(px,py,pw,22,11); cx.fill();
+      cx.fillStyle=C.bg; cx.textBaseline='middle'; cx.fillText(label,px+9,py+11.5);
+    }
+    ripples=ripples.filter(function(r){return t-r.t<1.6;});
+    if(!reduce&&live) raf=requestAnimationFrame(frame);
+  }
+  function roundRect(x,y,w,h,r){cx.beginPath();cx.moveTo(x+r,y);cx.arcTo(x+w,y,x+w,y+h,r);cx.arcTo(x+w,y+h,x,y+h,r);cx.arcTo(x,y+h,x,y,r);cx.arcTo(x,y,x+w,y,r);cx.closePath();}
+  function pos(e){var r=box.getBoundingClientRect(); m.x=e.clientX-r.left; m.y=e.clientY-r.top; m.in=m.x>-60&&m.x<W+60&&m.y>-60&&m.y<H+60; if(!m.in){m.x=m.y=-999;} if(reduce) frame(performance.now());}
+  window.addEventListener('pointermove',pos,{passive:true});
+  document.addEventListener('pointerleave',function(){m.x=m.y=-999;m.in=false;});
+  window.addEventListener('pointerdown',function(e){var r=box.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+    if(x>0&&x<W&&y>0&&y<H) ripples.push({x:x,y:y,t:(performance.now()-t0)/1000});},{passive:true});
+  function start(){if(reduce){frame(performance.now());return;} cancelAnimationFrame(raf); raf=requestAnimationFrame(frame);}
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){live=es[0].isIntersecting&&!document.hidden; if(live) start();}).observe(box);}
+  document.addEventListener('visibilitychange',function(){live=!document.hidden; if(live) start();});
+  new MutationObserver(function(){colors(); if(reduce) frame(performance.now());}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','class']});
+  window.addEventListener('resize',function(){size(); if(reduce) frame(performance.now());});
+  colors(); size(); start();
+})();
+</script>
 
